@@ -1,0 +1,29 @@
+                                        
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+                                        
+                 Version K-2015.06 for linux64 - May 28, 2015 
+                                        
+                    Copyright (c) 1988 - 2015 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+Error: could not open script file "/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/rm_dc_scripts/dc_tcl" (CMD-015)
+dc_shell> exit
+
+Memory usage for main task 46 Mbytes.
+Memory usage for this session 46 Mbytes.
+CPU usage for this session 2 seconds ( 0.00 hours ).
+
+Thank you...

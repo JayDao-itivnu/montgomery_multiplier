@@ -7,220 +7,321 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/home/LOCAL/hiepdm/workspace/MontMul/sim
+Z0 d/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/sim
 T_opt
-!s110 1636022617
-VhOT:U>YKOARm2Q<m;4YZ_1
+!s110 1641978895
+VHF`igb96_Q2X6cdTY[hGB0
 04 24 8 work test_montgomery_mult_vhd behavior 1
-=1-000ae431a4f1-6183b958-f19ce-36a9
-o-quiet -auto_acc_if_foreign -work work
-tCvgOpt 0
+=1-ac1f6b18435d-61de9c0e-f2761-7b53
+Z1 o-quiet -auto_acc_if_foreign -work work
+Z2 tCvgOpt 0
 n@_opt
-OL;O;10.7c;67
+Z3 OL;O;10.7c;67
 R0
-Emontg_cell
-Z1 w1636021910
-Z2 DPx4 work 23 montgomery_mult_package 0 22 ]:<:6^TVVOA4NiL>inBhj2
-Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
-Z4 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z6 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-R0
-Z7 8../rtl/montgomery_mult.vhd
-Z8 F../rtl/montgomery_mult.vhd
-l0
-L38
-VC@YY2RER3@iCUPI4_Z<k32
-!s100 0BFI=MQn8jR6heI2ln]LJ1
-Z9 OL;C;10.7c;67
-33
-Z10 !s110 1636022848
-!i10b 1
-Z11 !s108 1636022848.000000
-Z12 !s90 -2008|-work|work|../rtl/montgomery_mult.vhd|
-Z13 !s107 ../rtl/montgomery_mult.vhd|
-!i113 0
-Z14 o-2008 -work work
-Z15 tExplicit 1 CvgOpt 0
-Artl
-R2
-R3
-R4
-R5
-R6
-DEx4 work 10 montg_cell 0 22 C@YY2RER3@iCUPI4_Z<k32
-l49
-L47
-VK_WV6iCPEDg=J>kVhn;j90
-!s100 UECGAke;IKmN3`UeV`m0m1
-R9
-33
-R10
-!i10b 1
-R11
-R12
-R13
-!i113 0
-R14
-R15
-Emontgomery_mult
+T_opt1
+!s110 1641980843
+VKjh=EbmAAmQ5zd[kUol3k1
+04 24 8 work tb_montgomery_multiplier behavior 1
+=1-ac1f6b18435d-61dea3aa-dae02-6333
 R1
 R2
+n@_opt1
 R3
-R4
+Emontg_cell
+Z4 w1641980761
+Z5 DPx4 work 23 montgomery_mult_package 0 22 ]:<:6^TVVOA4NiL>inBhj2
+Z6 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z7 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z9 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+R0
+Z10 8../src/montgomery_multiplier.vhd
+Z11 F../src/montgomery_multiplier.vhd
+l0
+L21
+VgQBQRfMaZ[MA[DgE`OO7W1
+!s100 inYeYenEELfhCSGzn4X211
+Z12 OL;C;10.7c;67
+33
+Z13 !s110 1641980842
+!i10b 1
+Z14 !s108 1641980842.000000
+Z15 !s90 -2008|-work|work|../src/montgomery_multiplier.vhd|
+Z16 !s107 ../src/montgomery_multiplier.vhd|
+!i113 0
+Z17 o-2008 -work work
+Z18 tExplicit 1 CvgOpt 0
+Artl
 R5
 R6
-R0
 R7
 R8
+R9
+DEx4 work 10 montg_cell 0 22 gQBQRfMaZ[MA[DgE`OO7W1
+l43
+L41
+VUmT^4TK@[b9_b5F<bZR>f1
+!s100 [SPjULfzEGO]0O8XhBUHc2
+R12
+33
+R13
+!i10b 1
+R14
+R15
+R16
+!i113 0
+R17
+R18
+Emontgomery_mult
+Z19 w1641977328
+R5
+R6
+R7
+R8
+R9
+R0
+Z20 8../src/montgomery_mult.vhd
+Z21 F../src/montgomery_mult.vhd
 l0
 L69
 VDcGoz>zATYl>lLY8HU0mJ1
 !s100 O@J[f5M9XmEJ649CQDOHQ1
-R9
-33
-R10
-!i10b 1
-R11
 R12
-R13
+33
+Z22 !s110 1641978894
+!i10b 1
+Z23 !s108 1641978894.000000
+Z24 !s90 -2008|-work|work|../src/montgomery_mult.vhd|
+Z25 !s107 ../src/montgomery_mult.vhd|
 !i113 0
-R14
-R15
+R17
+R18
 Artl
-R2
-R3
-R4
 R5
 R6
+R7
+R8
+R9
 DEx4 work 15 montgomery_mult 0 22 DcGoz>zATYl>lLY8HU0mJ1
 l93
 L78
 V;c<JQD9h0F2R;2>WS9FMz0
 !s100 ^;TKjAGFVLkeafGLKN^^U0
-R9
-33
-R10
-!i10b 1
-R11
 R12
-R13
+33
+R22
+!i10b 1
+R23
+R24
+R25
 !i113 0
-R14
-R15
+R17
+R18
 Pmontgomery_mult_package
-R3
-R4
-R5
 R6
-R1
-R0
 R7
 R8
+R9
+R19
+R0
+R20
+R21
 l0
 L16
 V]:<:6^TVVOA4NiL>inBhj2
 !s100 ZRl]h_FNe3B^0VZb=zRMN3
-R9
-33
-R10
-!i10b 1
-R11
 R12
-R13
+33
+R22
+!i10b 1
+R23
+R24
+R25
 !i113 0
+R17
+R18
+Emontgomery_multiplier
+R4
+R6
+R7
+R8
+R9
+R0
+R10
+R11
+l0
+L62
+VQHSE4AECZWSk8b46WVj?S2
+!s100 4fdN;Uc6g[M6l8zFfcHZb0
+R12
+33
+R13
+!i10b 1
 R14
 R15
-Ptb_package
-R4
-R3
-R5
+R16
+!i113 0
+R17
+R18
+Artl
 R6
-Z16 w1635965940
+R7
+R8
+R9
+DEx4 work 21 montgomery_multiplier 0 22 QHSE4AECZWSk8b46WVj?S2
+l109
+L82
+V`U[FfARIMZGMG^fD?[nQ`2
+!s100 `KD;gY[b[WaEK<`P2fDjB1
+R12
+33
+R13
+!i10b 1
+R14
+R15
+R16
+!i113 0
+R17
+R18
+Etb_montgomery_multiplier
+Z26 w1641980837
+Z27 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
+Z28 DPx17 std_developerskit 9 std_iopak 0 22 TIEH2DXm]ZmCF5gcNZM2b2
+Z29 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+Z30 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
+R7
+R8
+R9
 R0
-Z17 8../tb/tb_package.vhd
-Z18 F../tb/tb_package.vhd
+Z31 8../tb/tb_montgomery_multiplier.vhd
+Z32 F../tb/tb_montgomery_multiplier.vhd
+l0
+L15
+VVK83cPMKZLAa^n9KAg:M^2
+!s100 ?cA0hdz8WJbQK@cAVzWGJ3
+R12
+33
+R13
+!i10b 1
+R14
+Z33 !s90 -2008|-work|work|../tb/tb_montgomery_multiplier.vhd|../tb/tb_package.vhd|
+Z34 !s107 ../tb/tb_package.vhd|../tb/tb_montgomery_multiplier.vhd|
+!i113 0
+R17
+R18
+Abehavior
+R27
+R28
+R29
+R30
+R7
+R8
+R9
+DEx4 work 24 tb_montgomery_multiplier 0 22 VK83cPMKZLAa^n9KAg:M^2
+l57
+L18
+VCfO73iB;HdR_nRB8U]0zL0
+!s100 10]54lMQnU_LcXNDXP6hd1
+R12
+33
+R13
+!i10b 1
+R14
+R33
+R34
+!i113 0
+R17
+R18
+Ptb_package
+R7
+R6
+R8
+R9
+Z35 w1641975127
+R0
+Z36 8../tb/tb_package.vhd
+Z37 F../tb/tb_package.vhd
 l0
 L53
 VHI@hBX4o=P2<hFbE8V3100
 !s100 _KlOaoF7cIDSl0?S7bn1K3
-R9
+R12
 33
 b1
-R10
+R13
 !i10b 1
-R11
-Z19 !s90 -2008|-work|work|../tb/tb_package.vhd|
-Z20 !s107 ../tb/tb_package.vhd|
-!i113 0
 R14
-R15
+R33
+R34
+!i113 0
+R17
+R18
 Bbody
 DPx4 work 10 tb_package 0 22 HI@hBX4o=P2<hFbE8V3100
-R4
-R3
-R5
+R7
 R6
+R8
+R9
 l0
 L59
 VE^OUU5lfUOeVSD^`XbRcT1
 !s100 Ed4E4FVkQN?de095cF;<k1
-R9
+R12
 33
-R10
+R13
 !i10b 1
-R11
-R19
-R20
-!i113 0
 R14
-R15
+R33
+R34
+!i113 0
+R17
+R18
 Etest_montgomery_mult_vhd
-Z21 w1636019724
-Z22 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
-Z23 DPx17 std_developerskit 9 std_iopak 0 22 TIEH2DXm]ZmCF5gcNZM2b2
-Z24 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
-Z25 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
-R4
-R5
-R6
+R35
+R27
+R28
+R29
+R30
+R7
+R8
+R9
 R0
-Z26 8../tb/test_montg_mult.vhd
-Z27 F../tb/test_montg_mult.vhd
+Z38 8../tb/test_montg_mult.vhd
+Z39 F../tb/test_montg_mult.vhd
 l0
 L15
 Vi[GzLcJBVdk`UC6nNW9G^2
 !s100 Aek^P<TcGB1d`gOK^@S4=0
-R9
+R12
 33
-R10
-!i10b 1
-R11
-Z28 !s90 -2008|-work|work|../tb/test_montg_mult.vhd|
-Z29 !s107 ../tb/test_montg_mult.vhd|
-!i113 0
-R14
-R15
-Abehavior
 R22
-R23
-R24
-R25
-R4
-R5
-R6
-Z30 DEx4 work 24 test_montgomery_mult_vhd 0 22 i[GzLcJBVdk`UC6nNW9G^2
-l45
-L18
-Z31 VddEO?NSaQR>4D9>4^Tgl`0
-Z32 !s100 Q@G_F_J^7MPn:P@[<LSUU2
-R9
-33
-R10
 !i10b 1
-R11
+R23
+Z40 !s90 -2008|-work|work|../tb/test_montg_mult.vhd|
+Z41 !s107 ../tb/test_montg_mult.vhd|
+!i113 0
+R17
+R18
+Abehavior
+R27
 R28
 R29
+R30
+R7
+R8
+R9
+DEx4 work 24 test_montgomery_mult_vhd 0 22 i[GzLcJBVdk`UC6nNW9G^2
+l45
+L18
+VddEO?NSaQR>4D9>4^Tgl`0
+!s100 Q@G_F_J^7MPn:P@[<LSUU2
+R12
+33
+R22
+!i10b 1
+R23
+R40
+R41
 !i113 0
-R14
-R15
+R17
+R18
