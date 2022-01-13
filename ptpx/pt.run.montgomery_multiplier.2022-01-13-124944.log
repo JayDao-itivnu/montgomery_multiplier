@@ -1,0 +1,96 @@
+
+                                 PrimeTime (R)
+
+               Version M-2017.06-SP2 for linux64 - Aug 25, 2017 
+
+                    Copyright (c) 1988 - 2017 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+
+#################################################################################
+# PrimeTime Reference Methodology Script
+# Script: pt.tcl
+# Version: K-2015.06 (July 13, 2015)
+# Copyright (C) 2008-2015 Synopsys All rights reserved.
+################################################################################
+# Please do not modify the sdir variable.
+# Doing so may cause script to fail.
+set PROJECT_DIR                   $env(PROJECT_DIR)  ;# root path of the project
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier
+# all the synthesis scripts are in ${PROJECT_DIR)/ptpx
+set sdir "${PROJECT_DIR}/ptpx"
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx
+##################################################################
+#    Source common and pt_setup.tcl File                         #
+##################################################################
+source ${sdir}/rm_setup/common_setup.tcl
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/rm_setup/common_setup.tcl
+
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/common/rm_setup/common_setup.tcl
+
+RM-Info: Completed script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/common/rm_setup/common_setup.tcl
+
+source ${sdir}/rm_setup/pt_setup.tcl
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/rm_setup/pt_setup.tcl
+
+Error: can't read "DESIGN_SAIF_FILE": no such variable
+	Use error_info for more info. (CMD-013)
+Information: script '/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/rm_setup/pt_setup.tcl'
+	stopped at line 47 due to error. (CMD-081)
+Information: script '/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/rm_pt_scripts/pt.tcl'
+	stopped at line 23 due to error. (CMD-081)
+Information: Defining new variable 'DESIGN_SDF_FILE'. (CMD-041)
+Information: Defining new variable 'LIBRARY_DONT_USE_FILE'. (CMD-041)
+Information: Defining new variable 'ADDITIONAL_SEARCH_PATH'. (CMD-041)
+Information: Defining new variable 'DESIGN_NETLIST'. (CMD-041)
+Information: Defining new variable 'MAP_FILE'. (CMD-041)
+Information: Defining new variable 'REPORTS_DIR'. (CMD-041)
+Information: Defining new variable 'TECH_FILE'. (CMD-041)
+Information: Defining new variable 'VA3_COORDINATES'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET1'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET2'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET3'. (CMD-041)
+Information: Defining new variable 'HIERARCHICAL_CELLS'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET4'. (CMD-041)
+Information: Defining new variable 'MIN_LIBRARY_FILES'. (CMD-041)
+Information: Defining new variable 'DESIGN_VCD_FILE'. (CMD-041)
+Information: Defining new variable 'DESIGN_CONSTRAINT_FILE'. (CMD-041)
+Information: Defining new variable 'VA4_COORDINATES'. (CMD-041)
+Information: Defining new variable 'MIN_ROUTING_LAYER'. (CMD-041)
+Information: Defining new variable 'MW_REFERENCE_LIB_DIRS'. (CMD-041)
+Information: Defining new variable 'SYN_DIR'. (CMD-041)
+Information: Defining new variable 'ADDITIONAL_LINK_LIB_FILES'. (CMD-041)
+Information: Defining new variable 'TLUPLUS_MAX_FILE'. (CMD-041)
+Information: Defining new variable 'TARGET_LIBRARY_FILES'. (CMD-041)
+Information: Defining new variable 'DESIGN_NAME'. (CMD-041)
+Information: Defining new variable 'PROJECT_DIR'. (CMD-041)
+Information: Defining new variable 'DESIGN_REF_DATA_PATH'. (CMD-041)
+Information: Defining new variable 'STD_LIBRARY_SUFFIX'. (CMD-041)
+Information: Defining new variable 'NETLIST_FILES'. (CMD-041)
+Information: Defining new variable 'VA1_COORDINATES'. (CMD-041)
+Information: Defining new variable 'DESIGN_INSTANCE_PATH'. (CMD-041)
+Information: Defining new variable 'TLUPLUS_MIN_FILE'. (CMD-041)
+Information: Defining new variable 'sdir'. (CMD-041)
+Information: Defining new variable 'DESIGN_KIT_PATH'. (CMD-041)
+Information: Defining new variable 'RESULTS_DIR'. (CMD-041)
+Information: Defining new variable 'STD_LIBRARY_TYPE'. (CMD-041)
+Information: Defining new variable 'MAX_ROUTING_LAYER'. (CMD-041)
+Information: Defining new variable 'MW_REFERENCE_CONTROL_FILE'. (CMD-041)
+Information: Defining new variable 'HIERARCHICAL_DESIGNS'. (CMD-041)
+Information: Defining new variable 'VA2_COORDINATES'. (CMD-041)
+Information: Defining new variable 'PD1'. (CMD-041)
+Information: Defining new variable 'PD2'. (CMD-041)
+Information: Defining new variable 'PD3'. (CMD-041)
+Information: Defining new variable 'PD4'. (CMD-041)
+pt_shell> exit
+
+Timing updates: 0 (0 implicit, 0 explicit) (0 incremental, 0 full, 0 logical)
+Noise updates: 0 (0 implicit, 0 explicit) (0 incremental, 0 full)
+Maximum memory usage for this session: 751.07 MB
+CPU usage for this session: 2 seconds 
+Elapsed time for this session: 14 seconds
+Diagnostics summary: 1 error, 45 informationals
+
+Thank you for using pt_shell!

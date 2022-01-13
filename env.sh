@@ -10,6 +10,8 @@ source /home/tools/mentor/env.sh
 export PROJECT_DIR=`pwd`
 export SIM_DIR="${PROJECT_DIR}/sim"
 export SYN_DIR="${PROJECT_DIR}/syn"
+export PT_DIR="${PROJECT_DIR}/ptpx"
+
 # Environment variable
 #	SYNOPSYS_HOME=""
 #	MENTOR_HOME=""
@@ -33,13 +35,13 @@ export PDK_LIB_TYPE="NLDM"
 #export PDK_LIB_TYPE="CCS"
 export DESIGN_KIT_PATH=$DESIGN_KIT_PATH/${PDK_LIB_TYPE}
 # For post-synthesis simulation & power estimation
-export DESIGN_NETLIST="${PROJECT_DIR}/syn/netlist/${DESIGN_NAME}.v"
+export DESIGN_NETLIST="${PROJECT_DIR}/syn/results/${DESIGN_NAME}.mapped.v"
 
-export DESIGN_VCD_FILE="${SIM_DIR}/${DESIGN_NAME}.vcd.gz"
+export DESIGN_SAIF_FILE="${SIM_DIR}/${DESIGN_NAME}.saif"
 
-export DESIGN_INSTANCE_PATH="/aes_tb/uut"
-export DESIGN_SDF_FILE="${PROJECT_DIR}/syn/netlist/${DESIGN_NAME}.sdf"
-export DESIGN_CONSTRAINT_FILE="${DESIGN_NAME}.sdc"
+export DESIGN_INSTANCE_PATH="/tb_montgomery_multiplier/uut"
+export DESIGN_SDF_FILE="${PROJECT_DIR}/syn/results/${DESIGN_NAME}.mapped.sdf"
+export DESIGN_CONSTRAINT_FILE="${DESIGN_NAME}.mapped.sdc"
 # ------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------

@@ -1,0 +1,1299 @@
+                                        
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+                                        
+                 Version K-2015.06 for linux64 - May 28, 2015 
+                                        
+                    Copyright (c) 1988 - 2015 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+# Author: Manh-Hiep Dao: 197.hiepmanhdao@gmail.com
+# Le Quy Don Technical University
+set PROJECT_DIR                   $env(PROJECT_DIR)  ;# root path of the project
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier
+# all the synthesis scripts are in ${PROJECT_DIR)/syn
+source -echo -verbose ${PROJECT_DIR}/syn/rm_setup/dc_setup.tcl
+# Author: Manh-Hiep Dao: 197.hiepmanhdao@gmail.com
+# Le Quy Don Technical University
+source -echo -verbose ${PROJECT_DIR}/common/rm_setup/common_setup.tcl
+puts "RM-Info: Running script [info script]\n"
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/common/rm_setup/common_setup.tcl
+
+##########################################################################################
+# Variables common to all reference methodology scripts
+# Script: common_setup.tcl
+# Version: K-2015.06 (July 13, 2015)
+# Copyright (C) 2007-2015 Synopsys, Inc. All rights reserved.
+##########################################################################################
+set DESIGN_NAME                     $env(DESIGN_NAME)  ;#  The name of the top-level design
+montgomery_multiplier
+#set PROJECT_DIR                    $env(PROJECT_DIR)  ;# root path of the project
+# all the synthesis scripts are in ${PROJECT_DIR)/syn
+set DESIGN_KIT_PATH                 $env(DESIGN_KIT_PATH)
+/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM
+set SYN_DIR                         $env(SYN_DIR)
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn
+set DESIGN_REF_DATA_PATH          ""  ;#  Absolute path prefix variable for library/design data.
+#  Use this variable to prefix the common absolute path  
+#  to the common variables defined below.
+#  Absolute paths are mandatory for hierarchical 
+#  reference methodology flow.
+##########################################################################################
+# Hierarchical Flow Design Variables
+##########################################################################################
+set HIERARCHICAL_DESIGNS           "" ;# List of hierarchical block design names "DesignA DesignB" ...
+set HIERARCHICAL_CELLS             "" ;# List of hierarchical block cell instance names "u_DesignA u_DesignB" ...
+##########################################################################################
+# Library Setup Variables
+##########################################################################################
+# For the following variables, use a blank space to separate multiple entries.
+# Example: set TARGET_LIBRARY_FILES "lib1.db lib2.db lib3.db"
+set STD_LIBRARY_TYPE              $env(PDK_LIB_TYPE)
+NLDM
+set STD_LIBRARY_SUFFIX ""
+if { [ expr { $STD_LIBRARY_TYPE ne "NLDM" } ] } {
+	set STD_LIBRARY_SUFFIX [string tolower $STD_LIBRARY_TYPE]
+	set STD_LIBRARY_SUFFIX "_${STD_LIBRARY_SUFFIX}"
+}
+set ADDITIONAL_SEARCH_PATH        "${PROJECT_DIR}/syn/input
+                                   ${DESIGN_KIT_PATH}"  ;#  Additional search path to be added to the default search path
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/input
+                                   /home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM
+set TARGET_LIBRARY_FILES          "NangateOpenCellLibrary_typical.db"  ;#  Target technology logical libraries
+NangateOpenCellLibrary_typical.db
+set ADDITIONAL_LINK_LIB_FILES     ""  ;#  Extra link logical libraries not included in TARGET_LIBRARY_FILES
+set MIN_LIBRARY_FILES             "NangateOpenCellLibrary_low_temp.db NangateOpenCellLibrary_fast.db NangateOpenCellLibrary_slow.db NangateOpenCellLibrary_worst_low.db"  ;#  List of max min library pairs "max1 min1 max2 min2 max3 min3"...
+NangateOpenCellLibrary_low_temp.db NangateOpenCellLibrary_fast.db NangateOpenCellLibrary_slow.db NangateOpenCellLibrary_worst_low.db
+set MW_REFERENCE_LIB_DIRS         ""  ;#  Milkyway reference libraries (include IC Compiler ILMs here)
+set MW_REFERENCE_CONTROL_FILE     ""  ;#  Reference Control file to define the Milkyway reference libs
+set TECH_FILE                     ""  ;#  Milkyway technology file
+set MAP_FILE                      ""  ;#  Mapping file for TLUplus
+set TLUPLUS_MAX_FILE              ""  ;#  Max TLUplus file
+set TLUPLUS_MIN_FILE              ""  ;#  Min TLUplus file
+set MIN_ROUTING_LAYER            ""   ;# Min routing layer
+set MAX_ROUTING_LAYER            ""   ;# Max routing layer
+#set LIBRARY_DONT_USE_FILE        "freepdk45nm_dont_use.tcl"   ;# Tcl file with library modifications for dont_use
+set LIBRARY_DONT_USE_FILE        ""   ;# Tcl file with library modifications for dont_use
+##########################################################################################
+# Multivoltage Common Variables
+#
+# Define the following multivoltage common variables for the reference methodology scripts 
+# for multivoltage flows. 
+# Use as few or as many of the following definitions as needed by your design.
+##########################################################################################
+set PD1                          ""           ;# Name of power domain/voltage area  1
+set VA1_COORDINATES              {}           ;# Coordinates for voltage area 1
+set MW_POWER_NET1                "VDD1"       ;# Power net for voltage area 1
+VDD1
+set PD2                          ""           ;# Name of power domain/voltage area  2
+set VA2_COORDINATES              {}           ;# Coordinates for voltage area 2
+set MW_POWER_NET2                "VDD2"       ;# Power net for voltage area 2
+VDD2
+set PD3                          ""           ;# Name of power domain/voltage area  3
+set VA3_COORDINATES              {}           ;# Coordinates for voltage area 3
+set MW_POWER_NET3                "VDD3"       ;# Power net for voltage area 3
+VDD3
+set PD4                          ""           ;# Name of power domain/voltage area  4
+set VA4_COORDINATES              {}           ;# Coordinates for voltage area 4
+set MW_POWER_NET4                "VDD4"       ;# Power net for voltage area 4
+VDD4
+puts "RM-Info: Completed script [info script]\n"
+RM-Info: Completed script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/common/rm_setup/common_setup.tcl
+
+source -echo -verbose ${PROJECT_DIR}/syn/rm_setup/dc_setup_filenames.tcl
+# Author: Manh-Hiep Dao: 197.hiepmanhdao@gmail.com
+# Le Quy Don Technical University
+puts "RM-Info: Running script [info script]\n"
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/rm_setup/dc_setup_filenames.tcl
+
+#################################################################################
+# Design Compiler Reference Methodology Filenames Setup
+# Script: dc_setup_filenames.tcl
+# Version: K-2015.06 (July 13, 2015)
+# Copyright (C) 2010-2015 Synopsys, Inc. All rights reserved.
+#################################################################################
+#################################################################################
+# Use this file to customize the filenames used in the Design Compiler
+# Reference Methodology scripts.  This file is designed to be sourced at the
+# beginning of the dc_setup.tcl file after sourcing the common_setup.tcl file.
+#
+# Note that the variables presented in this file depend on the type of flow
+# selected when generating the reference methodology files.
+#
+# Example.
+#    If you set DFT flow as FALSE, you will not see DFT related filename
+#    variables in this file.
+#
+# When reusing this file for different flows or newer release, ensure that
+# all the required filename variables are defined.  One way to do this is
+# to source the default dc_setup_filenames.tcl file and then override the
+# default settings as needed for your design.
+#
+# The default values are backwards compatible with older
+# Design Compiler Reference Methodology releases.
+#
+# Note: Care should be taken when modifying the names of output files
+#       that are used in other scripts or tools.
+#################################################################################
+#################################################################################
+# General Flow Files
+#################################################################################
+##########################
+# Milkyway Library Names #
+##########################
+set DCRM_MW_LIBRARY_NAME                                ${DESIGN_NAME}_LIB
+montgomery_multiplier_LIB
+set DCRM_FINAL_MW_CEL_NAME                              ${DESIGN_NAME}_DCT
+montgomery_multiplier_DCT
+###############
+# Input Files #
+###############
+set DCRM_RTL_READ_SCRIPT                                ${DESIGN_NAME}.dc.read_design.tcl
+montgomery_multiplier.dc.read_design.tcl
+set DCRM_SDC_INPUT_FILE                                 ${DESIGN_NAME}.sdc
+montgomery_multiplier.sdc
+set DCRM_CONSTRAINTS_INPUT_FILE                         ${DESIGN_NAME}.constraints.tcl
+montgomery_multiplier.constraints.tcl
+###########
+# Reports #
+###########
+set DCRM_CHECK_LIBRARY_REPORT                           ${DESIGN_NAME}.check_library.rpt
+montgomery_multiplier.check_library.rpt
+set DCRM_CONSISTENCY_CHECK_ENV_FILE                     ${DESIGN_NAME}.compile_ultra.env
+montgomery_multiplier.compile_ultra.env
+set DCRM_CHECK_DESIGN_REPORT                            ${DESIGN_NAME}.check_design.rpt
+montgomery_multiplier.check_design.rpt
+set DCRM_ANALYZE_DATAPATH_EXTRACTION_REPORT             ${DESIGN_NAME}.analyze_datapath_extraction.rpt
+montgomery_multiplier.analyze_datapath_extraction.rpt
+set DCRM_FINAL_QOR_REPORT                               ${DESIGN_NAME}.mapped.qor.rpt
+montgomery_multiplier.mapped.qor.rpt
+set DCRM_FINAL_TIMING_REPORT                            ${DESIGN_NAME}.mapped.timing.rpt
+montgomery_multiplier.mapped.timing.rpt
+set DCRM_FINAL_AREA_REPORT                              ${DESIGN_NAME}.mapped.area.rpt
+montgomery_multiplier.mapped.area.rpt
+set DCRM_FINAL_POWER_REPORT                             ${DESIGN_NAME}.mapped.power.rpt
+montgomery_multiplier.mapped.power.rpt
+set DCRM_FINAL_CLOCK_GATING_REPORT                      ${DESIGN_NAME}.mapped.clock_gating.rpt
+montgomery_multiplier.mapped.clock_gating.rpt
+set DCRM_FINAL_SELF_GATING_REPORT                       ${DESIGN_NAME}.mapped.self_gating.rpt
+montgomery_multiplier.mapped.self_gating.rpt
+set DCRM_THRESHOLD_VOLTAGE_GROUP_REPORT                 ${DESIGN_NAME}.mapped.threshold.voltage.group.rpt
+montgomery_multiplier.mapped.threshold.voltage.group.rpt
+set DCRM_INSTANTIATE_CLOCK_GATES_REPORT                 ${DESIGN_NAME}.instatiate_clock_gates.rpt
+montgomery_multiplier.instatiate_clock_gates.rpt
+################
+# Output Files #
+################
+set DCRM_AUTOREAD_RTL_SCRIPT                            ${DESIGN_NAME}.autoread_rtl.tcl
+montgomery_multiplier.autoread_rtl.tcl
+set DCRM_ELABORATED_DESIGN_DDC_OUTPUT_FILE              ${DESIGN_NAME}.elab.ddc
+montgomery_multiplier.elab.ddc
+set DCRM_COMPILE_ULTRA_DDC_OUTPUT_FILE                  ${DESIGN_NAME}.compile_ultra.ddc
+montgomery_multiplier.compile_ultra.ddc
+set DCRM_FINAL_DDC_OUTPUT_FILE                          ${DESIGN_NAME}.mapped.ddc
+montgomery_multiplier.mapped.ddc
+set DCRM_FINAL_VERILOG_OUTPUT_FILE                      ${DESIGN_NAME}.mapped.v
+montgomery_multiplier.mapped.v
+set DCRM_FINAL_NONPG_VERILOG_OUTPUT_FILE                ${DESIGN_NAME}.mapped.nonpg.v
+montgomery_multiplier.mapped.nonpg.v
+set DCRM_FINAL_SDC_OUTPUT_FILE                          ${DESIGN_NAME}.mapped.sdc
+montgomery_multiplier.mapped.sdc
+#################################################################################
+# DCT Flow Files
+#################################################################################
+###################
+# DCT Input Files #
+###################
+set DCRM_DCT_DEF_INPUT_FILE                             ${DESIGN_NAME}.def
+montgomery_multiplier.def
+set DCRM_DCT_FLOORPLAN_INPUT_FILE                       ${DESIGN_NAME}.fp
+montgomery_multiplier.fp
+set DCRM_DCT_PHYSICAL_CONSTRAINTS_INPUT_FILE            ${DESIGN_NAME}.physical_constraints.tcl
+montgomery_multiplier.physical_constraints.tcl
+###############
+# DCT Reports #
+###############
+set DCRM_DCT_PHYSICAL_CONSTRAINTS_REPORT                ${DESIGN_NAME}.physical_constraints.rpt
+montgomery_multiplier.physical_constraints.rpt
+set DCRM_DCT_FINAL_CONGESTION_REPORT                    ${DESIGN_NAME}.mapped.congestion.rpt
+montgomery_multiplier.mapped.congestion.rpt
+set DCRM_DCT_FINAL_CONGESTION_MAP_OUTPUT_FILE           ${DESIGN_NAME}.mapped.congestion_map.png
+montgomery_multiplier.mapped.congestion_map.png
+set DCRM_DCT_FINAL_CONGESTION_MAP_WINDOW_OUTPUT_FILE    ${DESIGN_NAME}.mapped.congestion_map_window.png
+montgomery_multiplier.mapped.congestion_map_window.png
+set DCRM_DCT_FINAL_QOR_SNAPSHOT_FOLDER                  ${DESIGN_NAME}.qor_snapshot
+montgomery_multiplier.qor_snapshot
+set DCRM_DCT_FINAL_QOR_SNAPSHOT_REPORT                  ${DESIGN_NAME}.qor_snapshot.rpt
+montgomery_multiplier.qor_snapshot.rpt
+####################
+# DCT Output Files #
+####################
+set DCRM_DCT_FLOORPLAN_OUTPUT_FILE                      ${DESIGN_NAME}.initial.fp
+montgomery_multiplier.initial.fp
+set DCRM_DCT_FINAL_FLOORPLAN_OUTPUT_FILE                ${DESIGN_NAME}.mapped.fp
+montgomery_multiplier.mapped.fp
+set DCRM_DCT_FINAL_SPEF_OUTPUT_FILE                     ${DESIGN_NAME}.mapped.spef
+montgomery_multiplier.mapped.spef
+set DCRM_DCT_FINAL_SDF_OUTPUT_FILE                      ${DESIGN_NAME}.mapped.sdf
+montgomery_multiplier.mapped.sdf
+set MVRCRM_RTL_READ_SCRIPT                              ${DESIGN_NAME}.MVRC.read_design.tcl
+montgomery_multiplier.MVRC.read_design.tcl
+set VCLPRM_RTL_READ_SCRIPT                              ${DESIGN_NAME}.VCLP.read_design.tcl
+montgomery_multiplier.VCLP.read_design.tcl
+#################################################################################
+# Formality Flow Files
+#################################################################################
+set DCRM_SVF_OUTPUT_FILE                                ${DESIGN_NAME}.mapped.svf
+montgomery_multiplier.mapped.svf
+set FMRM_RTL_READ_SCRIPT                                ${DESIGN_NAME}.FM.read_design.tcl
+montgomery_multiplier.FM.read_design.tcl
+set FMRM_UNMATCHED_POINTS_REPORT                        ${DESIGN_NAME}.fmv_unmatched_points.rpt
+montgomery_multiplier.fmv_unmatched_points.rpt
+set FMRM_FAILING_SESSION_NAME                           ${DESIGN_NAME}
+montgomery_multiplier
+set FMRM_FAILING_POINTS_REPORT                          ${DESIGN_NAME}.fmv_failing_points.rpt
+montgomery_multiplier.fmv_failing_points.rpt
+set FMRM_ABORTED_POINTS_REPORT                          ${DESIGN_NAME}.fmv_aborted_points.rpt
+montgomery_multiplier.fmv_aborted_points.rpt
+set FMRM_ANALYZE_POINTS_REPORT                          ${DESIGN_NAME}.fmv_analyze_points.rpt
+montgomery_multiplier.fmv_analyze_points.rpt
+puts "RM-Info: Completed script [info script]\n"
+RM-Info: Completed script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/rm_setup/dc_setup_filenames.tcl
+
+puts "RM-Info: Running script [info script]\n"
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/rm_setup/dc_setup.tcl
+
+#################################################################################
+# Design Compiler Reference Methodology Setup for Top-Down Flow
+# Script: dc_setup.tcl
+# Version: K-2015.06 (July 13, 2015)
+# Copyright (C) 2007-2015 Synopsys, Inc. All rights reserved.
+#################################################################################
+#################################################################################
+# Setup Variables
+#
+# Modify settings in this section to customize your Design Compiler Reference 
+# Methodology run.
+# Portions of dc_setup.tcl may be used by other tools so program name checks
+# are performed where necessary.
+#################################################################################
+# The following setting removes new variable info messages from the end of the log file
+set_app_var sh_new_variable_message false
+false
+if {$synopsys_program_name == "dc_shell"}  {
+
+  #################################################################################
+  # Design Compiler Setup Variables
+  #################################################################################
+
+  # Use the set_host_options command to enable multicore optimization to improve runtime.
+  # This feature has special usage and license requirements.  Refer to the 
+  # "Support for Multicore Technology" section in the Design Compiler User Guide
+  # for multicore usage guidelines.
+  # Note: This is a DC Ultra feature and is not supported in DC Expert.
+
+  # set_host_options -max_cores 4
+
+  # Change alib_library_analysis_path to point to a central cache of analyzed libraries
+  # to save runtime and disk space.  The following setting only reflects the
+  # default value and should be changed to a central location for best results.
+
+  set_app_var alib_library_analysis_path .
+
+  # Add any additional Design Compiler variables needed here
+
+}
+.
+set RTL_SOURCE_FILES  ""      ;# Enter the list of source RTL files if reading from RTL
+# The following variables are used by scripts in the rm_dc_scripts folder to direct 
+# the location of the output files.
+set REPORTS_DIR "reports"
+reports
+set RESULTS_DIR "results"
+results
+file mkdir ${SYN_DIR}/${REPORTS_DIR}
+file mkdir ${SYN_DIR}/${RESULTS_DIR}
+#################################################################################
+# Search Path Setup
+#
+# Set up the search path to find the libraries and design files.
+#################################################################################
+set_app_var search_path ". ${ADDITIONAL_SEARCH_PATH} $search_path"
+. /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/input
+                                   /home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM . /home/tools/synopsys/syn/K-2015.06/libraries/syn /home/tools/synopsys/syn/K-2015.06/minpower/syn /home/tools/synopsys/syn/K-2015.06/dw/syn_ver /home/tools/synopsys/syn/K-2015.06/dw/sim_ver
+#################################################################################
+# Library Setup
+#
+# This section is designed to work with the settings from common_setup.tcl
+# without any additional modification.
+#################################################################################
+# Milkyway variable settings
+# Make sure to define the Milkyway library variable
+# mw_design_library, it is needed by write_milkyway command
+set mw_reference_library ${MW_REFERENCE_LIB_DIRS}
+set mw_design_library ${DCRM_MW_LIBRARY_NAME}
+montgomery_multiplier_LIB
+set mw_site_name_mapping { {CORE unit} {Core unit} {core unit} }
+ {CORE unit} {Core unit} {core unit} 
+# The remainder of the setup below should only be performed in Design Compiler
+if {$synopsys_program_name == "dc_shell"}  {
+
+  set_app_var target_library ${TARGET_LIBRARY_FILES}
+  set_app_var synthetic_library dw_foundation.sldb
+  set_app_var link_library "* $target_library $ADDITIONAL_LINK_LIB_FILES $synthetic_library"
+
+  # Set min libraries if they exist
+  foreach {max_library min_library} $MIN_LIBRARY_FILES {
+    set_min_library $max_library -min_version $min_library
+  }
+
+  if {[shell_is_in_topographical_mode]} {
+
+    # To activate the extended layer mode to support 4095 layers uncomment the extend_mw_layers command 
+    # before creating the Milkyway library. The extended layer mode is permanent and cannot be reverted 
+    # back to the 255 layer mode once activated.
+
+    # extend_mw_layers
+
+    # Only create new Milkyway design library if it doesn't already exist
+    if {![file isdirectory $mw_design_library ]} {
+      create_mw_lib   -technology $TECH_FILE                       -mw_reference_library $mw_reference_library                       $mw_design_library
+    } else {
+      # If Milkyway design library already exists, ensure that it is consistent with specified Milkyway reference libraries
+      set_mw_lib_reference $mw_design_library -mw_reference_library $mw_reference_library
+    }
+
+    open_mw_lib     $mw_design_library
+
+    check_library > ${REPORTS_DIR}/${DCRM_CHECK_LIBRARY_REPORT}
+
+    set_tlu_plus_files -max_tluplus $TLUPLUS_MAX_FILE                        -min_tluplus $TLUPLUS_MIN_FILE                        -tech2itf_map $MAP_FILE
+
+    check_tlu_plus_files
+  }
+
+  #################################################################################
+  # Library Modifications
+  #
+  # Apply library modifications after the libraries are loaded.
+  #################################################################################
+
+  if {[file exists [which ${LIBRARY_DONT_USE_FILE}]]} {
+    puts "RM-Info: Sourcing script file [which ${LIBRARY_DONT_USE_FILE}]\n"
+    source -echo -verbose ${LIBRARY_DONT_USE_FILE}
+  }
+}
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_low_temp.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_fast.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_slow.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_worst_low.db'
+puts "RM-Info: Completed script [info script]\n"
+RM-Info: Completed script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/rm_setup/dc_setup.tcl
+
+#################################################################################
+# Design Compiler Reference Methodology Script for Top-Down Flow
+# Script: dc.tcl
+# Version: K-2015.06 (July 13, 2015)
+# Copyright (C) 2007-2015 Synopsys, Inc. All rights reserved.
+#################################################################################
+#################################################################################
+# Additional Variables
+#
+# Add any additional variables needed for your flow here.
+#################################################################################
+# No additional flow variables are being recommended
+#################################################################################
+# Setup for Formality Verification
+#################################################################################
+# In the event of an inconclusive (or hard) verification, we recommend using
+# the set_verification_priority commands provided from the analyze_points command
+# in Formality. The set_verification_priority commands target specific
+# operators to reduce verification complexity while minimizing QoR impact.
+# The set_verification_priority commands should be applied after the design
+# is read and elaborated.
+# For designs that don't have tight QoR constraints and don't have register retiming,
+# you can use the following variable to enable the highest productivity single pass flow.
+# This flow modifies the optimizations to make verification easier.
+# This variable setting should be applied prior to reading in the RTL for the design.
+# set_app_var simplified_verification_mode true
+# For more information about facilitating formal verification in the flow, refer
+# to the following SolvNet article:
+# "Resolving Inconclusive and Hard Verifications in Design Compiler"
+# https://solvnet.synopsys.com/retrieve/033140.html
+# Define the verification setup file for Formality
+set_svf ${RESULTS_DIR}/${DCRM_SVF_OUTPUT_FILE}
+Error: Could not open directory /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/results for writing.
+0
+#################################################################################
+# Setup SAIF Name Mapping Database
+#
+# Include an RTL SAIF for better power optimization and analysis.
+#
+# saif_map should be issued prior to RTL elaboration to create a name mapping
+# database for better annotation.
+################################################################################
+# saif_map -start
+#################################################################################
+# Read in the RTL Design
+#
+# Read in the RTL source files or read in the elaborated design (.ddc).
+#################################################################################
+puts "RM-Info: Sourcing script file [which ${DCRM_RTL_READ_SCRIPT}]\n"
+RM-Info: Sourcing script file /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/input/montgomery_multiplier.dc.read_design.tcl
+
+source -echo -verbose ${DCRM_RTL_READ_SCRIPT}
+## create directory for work library
+file mkdir WORK
+define_design_lib work -path ./WORK
+1
+## read the verilog files
+analyze -library WORK -format vhd  ${PROJECT_DIR}/src/${DESIGN_NAME}.vhd
+Running PRESTO HDLC
+Compiling Entity Declaration MONTG_CELL
+Compiling Architecture RTL of MONTG_CELL
+Compiling Entity Declaration MONTGOMERY_MULTIPLIER
+Compiling Architecture RTL of MONTGOMERY_MULTIPLIER
+Presto compilation completed successfully.
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_typical.db'
+Loading db file '/home/tools/synopsys/syn/K-2015.06/libraries/syn/dw_foundation.sldb'
+1
+elaborate -library WORK ${DESIGN_NAME} 
+Loading db file '/home/tools/synopsys/syn/K-2015.06/libraries/syn/gtech.db'
+Loading db file '/home/tools/synopsys/syn/K-2015.06/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Statistics for case statements in always block at line 163 in file
+	'/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/src/montgomery_multiplier.vhd'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           165            |    auto/auto     |
+|           173            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine montgomery_multiplier line 114 in file
+		'/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/src/montgomery_multiplier.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      count_reg      | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine montgomery_multiplier line 126 in file
+		'/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/src/montgomery_multiplier.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       aa_reg        | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine montgomery_multiplier line 139 in file
+		'/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/src/montgomery_multiplier.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       bb_reg        | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine montgomery_multiplier line 150 in file
+		'/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/src/montgomery_multiplier.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       cc_reg        | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine montgomery_multiplier line 163 in file
+		'/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/src/montgomery_multiplier.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  current_state_reg  | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Elaborated 1 design.
+Current design is now 'montgomery_multiplier'.
+Information: Building the design 'montg_cell' instantiated from design 'montgomery_multiplier' with
+	the parameters "M=8,F=8'h1d". (HDL-193)
+Presto compilation completed successfully.
+1
+1
+# OR
+# You can read an elaborated design from the same release.
+# Using an elaborated design from an older release will not give the best results.
+# read_ddc ${DCRM_ELABORATED_DESIGN_DDC_OUTPUT_FILE}
+current_design ${DESIGN_NAME}
+Current design is 'montgomery_multiplier'.
+{montgomery_multiplier}
+link
+
+  Linking design 'montgomery_multiplier'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (2 designs)               /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/montgomery_multiplier.db, etc
+  NangateOpenCellLibrary (library) /home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_typical.db
+  dw_foundation.sldb (library) /home/tools/synopsys/syn/K-2015.06/libraries/syn/dw_foundation.sldb
+
+1
+write -hierarchy -format ddc -output ${RESULTS_DIR}/${DCRM_ELABORATED_DESIGN_DDC_OUTPUT_FILE}
+Error: Unable to open DDC file 'results/montgomery_multiplier.elab.ddc' for writing. (DDC-1)
+Error: Write command failed. (UID-25)
+0
+#################################################################################
+# Apply Logical Design Constraints
+#################################################################################
+# You can use either SDC file ${DCRM_SDC_INPUT_FILE} or Tcl file 
+# ${DCRM_CONSTRAINTS_INPUT_FILE} to constrain your design.
+if {[file exists [which ${DCRM_SDC_INPUT_FILE}]]} {
+  puts "RM-Info: Reading SDC file [which ${DCRM_SDC_INPUT_FILE}]\n"
+  read_sdc ${DCRM_SDC_INPUT_FILE}
+}
+Warning: File 'montgomery_multiplier.sdc' was not found in search path. (CMD-030)
+if {[file exists [which ${DCRM_CONSTRAINTS_INPUT_FILE}]]} {
+  puts "RM-Info: Sourcing script file [which ${DCRM_CONSTRAINTS_INPUT_FILE}]\n"
+  source -echo -verbose ${DCRM_CONSTRAINTS_INPUT_FILE}
+}
+RM-Info: Sourcing script file /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/input/montgomery_multiplier.constraints.tcl
+
+## create constraints
+## set_operating_conditions -min BEST -max BEST
+set_load 0.1  [all_outputs]
+1
+set_max_capacitance 1.5 [all_outputs]
+1
+set_max_transition 1.5 [all_inputs] 
+1
+set time_scale  2
+2
+set tran [expr (0.05*$time_scale)]
+0.1
+set delay_in [expr (0.6*$time_scale)]
+1.2
+set delay_out_min [expr (0.6*$time_scale)]
+1.2
+#set delay_out_max [expr (0.5*$time_scale)]
+create_clock -period 100 {clock}  
+1
+set_clock_uncertainty $tran clock
+1
+set_clock_latency $tran clock
+1
+set_clock_transition $tran clock
+1
+set_input_delay $delay_in [all_inputs] -clock clock
+1
+set_output_delay $delay_out_min [all_outputs] -clock clock 
+1
+1
+# You can enable analysis and optimization for multiple clocks per register.
+# To use this, you must constrain to remove false interactions between mutually exclusive
+# clocks.  This is needed to prevent unnecessary analysis that can result in
+# a significant runtime increase with this feature enabled.
+#
+# set_clock_groups -physically_exclusive | -logically_exclusive | -asynchronous #                  -group {CLKA, CLKB} -group {CLKC, CLKD} 
+#
+# set_app_var timing_enable_multiple_clocks_per_reg true
+#################################################################################
+# Apply The Operating Conditions
+#################################################################################
+# Set operating condition on top level
+# set_operating_conditions -max <max_opcond> -min <min_opcond>
+#################################################################################
+# Create Default Path Groups
+#
+# Separating these paths can help improve optimization.
+# Remove these path group settings if user path groups have already been defined.
+#################################################################################
+set ports_clock_root [filter_collection [get_attribute [get_clocks] sources] object_class==port]
+{clock}
+group_path -name REGOUT -to [all_outputs] 
+1
+group_path -name REGIN -from [remove_from_collection [all_inputs] ${ports_clock_root}] 
+1
+group_path -name FEEDTHROUGH -from [remove_from_collection [all_inputs] ${ports_clock_root}] -to [all_outputs]
+1
+#################################################################################
+# Power Optimization Section
+#################################################################################
+#############################################################################
+# Clock Gating Setup
+#############################################################################
+# If your design has instantiated clock gates, you should use identify_clock_gating
+# command to identify and the report_clock_gating -multi_stage to report them.
+# identify_clock_gating
+# report_clock_gating -multi_stage -nosplit > ${REPORTS_DIR}/${DCRM_INSTANTIATE_CLOCK_GATES_REPORT}
+# If you do not want clock-gating to optimize your user instantiated 
+# clock-gating cells, you should set the pwr_preserve_cg attribute upon
+# those clock-gating cells.
+# set_preserve_clock_gating [get_cell <user_clock_gating_cells>] 
+# Default clock_gating_style suits most designs.  Change only if necessary.
+# set_clock_gating_style -positive_edge_logic {integrated} -negative_edge_logic {integrated} -control_point before ...   
+# Clock gate insertion is now performed during compile_ultra -gate_clock
+# so insert_clock_gating is no longer recommended at this step.
+# The following setting can be used to enable global clock gating.
+# With global clock gating, common enables are extracted across hierarchies
+# which results in fewer redundant clock gates. 
+# set compile_clock_gating_through_hierarchy true 
+# For better timing optimization of enable logic, clock latency for 
+# clock gating cells can be optionally specified.
+# set_clock_gate_latency -clock <clock_name> -stage <stage_num>     #         -fanout_latency {fanout_range1 latency_val1 fanout_range2 latency_val2 ...}
+# You can use "set_self_gating_options" command to specify self-gating 
+# options when -self_gating option is used in addition to -gate_clock 
+# option at the compile_ultra command. To inserts self-gate on clock-gated
+# registers, uncomment the following line:
+# set_self_gating_options -interaction_with_clock_gating insert
+#############################################################################
+# Apply Power Optimization Constraints
+#############################################################################
+# Include a SAIF file, if possible, for power optimization.  If a SAIF file
+# is not provided, the default toggle rate of 0.1 will be used for propagating
+# switching activity.
+# read_saif -auto_map_names -input ${DESIGN_NAME}.saif -instance < DESIGN_INSTANCE > -verbose
+if {[shell_is_in_topographical_mode]} {
+      # For multi-Vth design, replace the following to set the threshold voltage groups in the libraries.
+
+      # set_attribute <my_hvt_lib> default_threshold_voltage_group HVT -type string
+      # set_attribute <my_lvt_lib> default_threshold_voltage_group LVT -type string
+    }
+# Starting in J-2014.09, leakage optimization is the default flow and is always enabled.
+if {[shell_is_in_topographical_mode]} {
+      # Use the following command to enable power prediction using clock tree estimation.
+
+      # set_power_prediction true -ct_references <LIB CELL LIST>
+    }
+if {[shell_is_in_topographical_mode]} {
+
+  ##################################################################################
+  # Apply Physical Design Constraints
+  #
+  # Optional: Floorplan information can be read in here if available.
+  # This is highly recommended for irregular floorplans.
+  #
+  # Floorplan constraints can be provided from one of the following sources:
+  # * extract_physical_constraints with a DEF file
+  #	* read_floorplan with a floorplan file (written by write_floorplan)
+  #	* User generated Tcl physical constraints
+  #
+  ##################################################################################
+
+  # Specify ignored layers for routing to improve correlation
+  # Use the same ignored layers that will be used during place and route
+
+  if { ${MIN_ROUTING_LAYER} != ""} {
+    set_ignored_layers -min_routing_layer ${MIN_ROUTING_LAYER}
+  }
+  if { ${MAX_ROUTING_LAYER} != ""} {
+    set_ignored_layers -max_routing_layer ${MAX_ROUTING_LAYER}
+  }
+
+  report_ignored_layers
+
+  # If the macro names change after mapping and writing out the design due to
+  # ungrouping or Verilog change_names renaming, it may be necessary to translate 
+  # the names to correspond to the cell names that exist before compile.
+
+  # During DEF constraint extraction, extract_physical_constraints automatically
+  # matches DEF names back to precompile names in memory using standard matching rules.
+  # read_floorplan will also automatically perform this name matching.
+
+  # Modify set_query_rules if other characters are used for hierarchy separators
+  # or bus names. 
+
+  # set_query_rules  -hierarchical_separators {/ _ .}   #                  -bus_name_notations {[] __ ()}     #                  -class {cell pin port net}         #                  -wildcard                          #                  -regsub_cumulative                 #                  -show
+
+  ## For DEF floorplan input
+
+  # The DEF file for Design Compiler Topographical can be written from IC Compiler using the following 
+  # recommended options:
+  # icc_shell> write_def -version 5.7 -rows_tracks_gcells -fixed -pins -blockages -specialnets   #                      -vias -regions_groups -verbose -output ${DCRM_DCT_DEF_INPUT_FILE}
+
+  if {[file exists [which ${DCRM_DCT_DEF_INPUT_FILE}]]} {
+    # If you have physical only cells as a part of your floorplan DEF file, you can use
+    # the -allow_physical_cells option with extract_physical_constraints to include
+    # the physical only cells as a part of the floorplan in Design Compiler to improve correlation.
+    #
+    # Note: With -allow_physical_cells, new logical cells in the DEF file
+    #       that have a fixed location will also be added to the design in memory.
+    #       See the extract_physical_constraints manpage for more information about
+    #       identifying the cells added to the design when using -allow_physical_cells.
+  
+    # extract_physical_constraints -allow_physical_cells ${DCRM_DCT_DEF_INPUT_FILE}
+
+    puts "RM-Info: Reading in DEF file [which ${DCRM_DCT_DEF_INPUT_FILE}]\n"
+    extract_physical_constraints ${DCRM_DCT_DEF_INPUT_FILE}
+  }
+  
+  # OR
+
+  ## For floorplan file input
+
+  # The floorplan file for Design Compiler Topographical can be written from IC Compiler using the following 
+  # recommended options:
+  # Note: IC Compiler requires the use of -placement {terminal} with -create_terminal beginning in the
+  #       D-2010.03-SP1 release.
+  # icc_shell> write_floorplan -placement {io terminal hard_macro soft_macro} -create_terminal   #                            -row -create_bound -preroute -track ${DCRM_DCT_FLOORPLAN_INPUT_FILE}
+
+  # Read in the secondary floorplan file, previously written by write_floorplan in Design Compiler,
+  # to restore physical-only objects back to the design, before reading the main floorplan file.
+
+  if {[file exists [which ${DCRM_DCT_FLOORPLAN_INPUT_FILE}.objects]]} {
+    puts "RM-Info: Reading in secondary floorplan file [which ${DCRM_DCT_FLOORPLAN_INPUT_FILE}.objects]\n"
+    read_floorplan ${DCRM_DCT_FLOORPLAN_INPUT_FILE}.objects
+  }
+
+  if {[file exists [which ${DCRM_DCT_FLOORPLAN_INPUT_FILE}]]} {
+    puts "RM-Info: Reading in floorplan file [which ${DCRM_DCT_FLOORPLAN_INPUT_FILE}]\n"
+    read_floorplan ${DCRM_DCT_FLOORPLAN_INPUT_FILE}
+  }
+
+  # OR
+
+  ## For Tcl file input
+
+  # For Tcl constraints, the name matching feature must be explicitly enabled
+  # and will also use the set_query_rules setttings. This should be turned off
+  # after the constraint read in order to minimize runtime.
+
+  if {[file exists [which ${DCRM_DCT_PHYSICAL_CONSTRAINTS_INPUT_FILE}]]} {
+    set_app_var enable_rule_based_query true
+    puts "RM-Info: Sourcing script file [which ${DCRM_DCT_PHYSICAL_CONSTRAINTS_INPUT_FILE}]\n"
+    source -echo -verbose ${DCRM_DCT_PHYSICAL_CONSTRAINTS_INPUT_FILE}
+    set_app_var enable_rule_based_query false 
+  }
+
+
+  # Use write_floorplan to save the applied floorplan.
+
+  # Note: A secondary floorplan file ${DCRM_DCT_FLOORPLAN_OUTPUT_FILE}.objects
+  #       might also be written to capture physical-only objects in the design.
+  #       This file should be read in before reading the main floorplan file.
+
+  write_floorplan -all ${RESULTS_DIR}/${DCRM_DCT_FLOORPLAN_OUTPUT_FILE}
+
+  # Verify that all the desired physical constraints have been applied
+  # Add the -pre_route option to include pre-routes in the report
+  report_physical_constraints > ${REPORTS_DIR}/${DCRM_DCT_PHYSICAL_CONSTRAINTS_REPORT}
+}
+#################################################################################
+# Apply Additional Optimization Constraints
+#################################################################################
+# Prevent assignment statements in the Verilog netlist.
+set_fix_multiple_port_nets -all -buffer_constants
+1
+#################################################################################
+# Save the compile environment snapshot for the Consistency Checker utility.
+#
+# This utility checks for inconsistent settings between Design Compiler and
+# IC Compiler which can contribute to correlation mismatches.
+#
+# Download this utility from SolvNet.  See the following SolvNet article for
+# complete details:
+#
+# https://solvnet.synopsys.com/retrieve/026366.html
+#
+# The article is titled: "Using the Consistency Checker to Automatically Compare
+# Environment Settings Between Design Compiler and IC Compiler"
+#################################################################################
+# Uncomment the following to snapshot the environment for the Consistency Checker
+# write_environment -consistency -output ${REPORTS_DIR}/${DCRM_CONSISTENCY_CHECK_ENV_FILE}
+#################################################################################
+# Check for Design Problems 
+#################################################################################
+# Check the current design for consistency
+check_design -summary
+ 
+****************************************
+check_design summary:
+Version:     K-2015.06
+Date:        Wed Jan 12 23:21:12 2022
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Cells                                                               1
+    Cells do not drive (LINT-1)                                     1
+--------------------------------------------------------------------------------
+
+Information: Use the 'check_design' command for 
+	 more information about warnings. (LINT-98)
+
+1
+check_design > ${REPORTS_DIR}/${DCRM_CHECK_DESIGN_REPORT}
+Error: could not open output redirect file "reports/montgomery_multiplier.check_design.rpt" (CMD-015)
+# The analyze_datapath_extraction command can help you to analyze why certain data 
+# paths are no extracted, uncomment the following line to report analyisis.
+# analyze_datapath_extraction > ${REPORTS_DIR}/${DCRM_ANALYZE_DATAPATH_EXTRACTION_REPORT}
+#################################################################################
+# Compile the Design
+#
+# Recommended Options:
+#
+#     -scan
+#     -gate_clock (-self_gating)
+#     -retime
+#     -spg
+#
+# Use compile_ultra as your starting point. For test-ready compile, include
+# the -scan option with the first compile and any subsequent compiles.
+#
+# Use -gate_clock to insert clock-gating logic during optimization.  This
+# is now the recommended methodology for clock gating.
+#
+# Use -self_gating option in addition to -gate_clock for potentially saving 
+# additional dynamic power, in topographical mode only. Registers that are 
+# not clock gated will be considered for XOR self gating.
+# XOR self gating should be performed along with clock gating, using -gate_clock
+# and -self_gating options. XOR self gates will be inserted only if there is 
+# potential power saving without degrading the timing.
+# An accurate switching activity annotation either by reading in a saif 
+# file or through set_switching_activity command is recommended.
+# You can use "set_self_gating_options" command to specify self-gating 
+# options.
+#
+# Use -retime to enable adaptive retiming optimization for further timing benefit.
+#
+# Use the -spg option to enable Design Compiler Graphical physical guidance flow.
+# The physical guidance flow improves QoR, area and timing correlation, and congestion.
+# It also improves place_opt runtime in IC Compiler.
+#
+# Note: In addition to -spg option you can enable the support of via resistance for 
+#       RC estimation to improve the timing correlation with IC Compiler by using the 
+#       following setting:
+#
+#       set_app_var spg_enable_via_resistance_support true
+#
+# You can selectively enable or disable the congestion optimization on parts of 
+# the design by using the set_congestion_optimization command.
+# This option requires a license for Design Compiler Graphical.
+#
+# The constant propagation is enabled when boundary optimization is disabled. In 
+# order to stop constant propagation you can do the following
+#
+# set_compile_directives -constant_propagation false <object_list>
+#
+# Note: Layer optimization is on by default in Design Compiler Graphical, to 
+#       improve the the accuracy of certain net delay during optimization.
+#       To disable the the automatic layer optimization you can use the 
+#       -no_auto_layer_optimization option.
+#
+#################################################################################
+if {[shell_is_in_topographical_mode]} {
+  # Use the "-check_only" option of "compile_ultra" to verify that your
+  # libraries and design are complete and that optimization will not fail
+  # in topographical mode.  Use the same options as will be used in compile_ultra.
+
+  # compile_ultra -gate_clock -check_only
+}
+set_dynamic_optimization true
+1
+# set_power_low_power_placement true
+compile_ultra -gate_clock
+Information: Performing power optimization. (PWR-850)
+Analyzing: "/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_typical.db"
+Library analysis succeeded.
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | K-2015.06-DWBB_201506.0 |     *     |
+| Licensed DW Building Blocks        | K-2015.06-DWBB_201506.0 |     *     |
+============================================================================
+
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Loaded alib file './alib-52/NangateOpenCellLibrary_typical.db.alib'
+  Building model 'DW01_NAND2'
+Information: Ungrouping hierarchy data_path before Pass 1 (OPT-776)
+Information: Ungrouping 1 of 5 hierarchies before Pass 1 (OPT-775)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'montgomery_multiplier'
+Information: Added key list 'DesignWare' to design 'montgomery_multiplier'. (DDB-72)
+ Implement Synthetic for 'montgomery_multiplier'.
+  Processing 'SNPS_CLOCK_GATE_HIGH_montgomery_multiplier_0'
+  Mapping integrated clock gating circuitry
+Memory usage for J1 task 148 Mbytes -- main task 148 Mbytes.
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_montgomery_multiplier_0, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_montgomery_multiplier_1, since there are no registers. (PWR-806)
+Information: Skipping clock gating on design SNPS_CLOCK_GATE_HIGH_montgomery_multiplier_2, since there are no registers. (PWR-806)
+Information: Performing clock-gating on design montgomery_multiplier. (PWR-730)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+
+  Beginning Constant Register Removal
+  -----------------------------------
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+
+
+  Beginning Power Optimization
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:02     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:03     227.7      0.00       0.0       0.0                           4019.6157
+    0:00:03     227.7      0.00       0.0       0.0                           4019.6157
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_low_temp.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_fast.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_slow.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_worst_low.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_typical.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+#compile_ultra
+#################################################################################
+# High-effort area optimization
+#
+# optimize_netlist -area command, was introduced in I-2013.12 release to improve
+# area of gate-level netlists. The command performs monotonic gate-to-gate 
+# optimization on mapped designs, thus improving area without degrading timing or
+# leakage. 
+#################################################################################
+optimize_netlist -area
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+
+Information: There are 3 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Loaded alib file './alib-52/NangateOpenCellLibrary_typical.db.alib'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+
+
+  Beginning Area Optimization
+  -----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:01     227.7      0.00       0.0       0.0                           3741.9519
+    0:00:01     226.9      0.00       0.0       0.0                           3735.1455
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_low_temp.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_fast.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_slow.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_worst_low.db'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_typical.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+#################################################################################
+# Write Out Final Design and Reports
+#
+#        .ddc:   Recommended binary format used for subsequent Design Compiler sessions
+#    Milkyway:   Recommended binary format for IC Compiler
+#        .v  :   Verilog netlist for ASCII flow (Formality, PrimeTime, VCS)
+#       .spef:   Topographical mode parasitics for PrimeTime
+#        .sdf:   SDF backannotated topographical mode timing for PrimeTime
+#        .sdc:   SDC constraints for ASCII flow
+#
+#################################################################################
+change_names -rules verilog -hierarchy
+1
+#################################################################################
+# Write out Design
+#################################################################################
+write -format verilog -hierarchy -output ${RESULTS_DIR}/${DCRM_FINAL_VERILOG_OUTPUT_FILE}
+Error: Can't open export file '/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/results/montgomery_multiplier.mapped.v'. (EXPT-4)
+Error: Write command failed. (UID-25)
+0
+write -format ddc     -hierarchy -output ${RESULTS_DIR}/${DCRM_FINAL_DDC_OUTPUT_FILE}
+Error: Unable to open DDC file 'results/montgomery_multiplier.mapped.ddc' for writing. (DDC-1)
+Error: Write command failed. (UID-25)
+0
+# Write and close SVF file and make it available for immediate use
+set_svf -off
+1
+#################################################################################
+# Write out Design Data
+#################################################################################
+if {[shell_is_in_topographical_mode]} {
+
+  # Note: A secondary floorplan file ${DCRM_DCT_FINAL_FLOORPLAN_OUTPUT_FILE}.objects
+  #       might also be written to capture physical-only objects in the design.
+  #       This file should be read in before reading the main floorplan file.
+
+  write_floorplan -all ${RESULTS_DIR}/${DCRM_DCT_FINAL_FLOORPLAN_OUTPUT_FILE}
+
+  # Write parasitics data from Design Compiler Topographical placement for static timing analysis
+  write_parasitics -output ${RESULTS_DIR}/${DCRM_DCT_FINAL_SPEF_OUTPUT_FILE}
+
+  # Write SDF backannotation data from Design Compiler Topographical placement for static timing analysis
+  write_sdf ${RESULTS_DIR}/${DCRM_DCT_FINAL_SDF_OUTPUT_FILE}
+
+  # Do not write out net RC info into SDC
+  set_app_var write_sdc_output_lumped_net_capacitance false
+  set_app_var write_sdc_output_net_resistance false
+}
+write_sdc -nosplit ${RESULTS_DIR}/${DCRM_FINAL_SDC_OUTPUT_FILE}
+Error: Cannot write the 'results/montgomery_multiplier.mapped.sdc' script file. (UID-270)
+0
+write_sdf ${RESULTS_DIR}/${DCRM_DCT_FINAL_SDF_OUTPUT_FILE}
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Error: Cannot write the '/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/results/montgomery_multiplier.mapped.sdf' file. (UID-29)
+0
+# If SAIF is used, write out SAIF name mapping file for PrimeTime-PX
+# saif_map -type ptpx -write_map ${RESULTS_DIR}/${DESIGN_NAME}.mapped.SAIF.namemap
+#################################################################################
+# Generate Final Reports
+#################################################################################
+report_qor > ${REPORTS_DIR}/${DCRM_FINAL_QOR_REPORT}
+Error: could not open output redirect file "reports/montgomery_multiplier.mapped.qor.rpt" (CMD-015)
+# Create a QoR snapshot of timing, physical, constraints, clock, power data, and routing on 
+# active scenarios and stores it in the location  specified  by  the icc_snapshot_storage_location 
+# variable. 
+if {[shell_is_in_topographical_mode]} {
+  set icc_snapshot_storage_location ${REPORTS_DIR}/${DCRM_DCT_FINAL_QOR_SNAPSHOT_FOLDER}
+  create_qor_snapshot -name ${DCRM_DCT_FINAL_QOR_SNAPSHOT_REPORT} > ${REPORTS_DIR}/${DCRM_DCT_FINAL_QOR_SNAPSHOT_REPORT}
+}
+report_timing -transition_time -nets -attributes -nosplit > ${REPORTS_DIR}/${DCRM_FINAL_TIMING_REPORT}
+Error: could not open output redirect file "reports/montgomery_multiplier.mapped.timing.rpt" (CMD-015)
+report_timing -transition_time -nets -attributes -nosplit -delay_type min > ${REPORTS_DIR}/${DESIGN_NAME}.mapped.timing_hold.rpt
+Error: could not open output redirect file "reports/montgomery_multiplier.mapped.timing_hold.rpt" (CMD-015)
+if {[shell_is_in_topographical_mode]} {
+  report_area -physical -nosplit > ${REPORTS_DIR}/${DCRM_FINAL_AREA_REPORT}
+} else {
+  report_area -nosplit > ${REPORTS_DIR}/${DCRM_FINAL_AREA_REPORT}
+}
+Error: could not open output redirect file "reports/montgomery_multiplier.mapped.area.rpt" (CMD-015)
+if {[shell_is_in_topographical_mode]} {
+  # report_congestion (topographical mode only) uses zroute for estimating and reporting 
+  # routing related congestion which improves the congestion correlation with IC Compiler.
+  # Design Compiler Topographical supports create_route_guide command to be consistent with IC
+  # Compiler after topographical mode synthesis.
+  # Those commands require a license for Design Compiler Graphical.
+
+  report_congestion > ${REPORTS_DIR}/${DCRM_DCT_FINAL_CONGESTION_REPORT}
+
+  # Use the following to generate and write out a congestion map from batch mode
+  # This requires a GUI session to be temporarily opened and closed so a valid DISPLAY
+  # must be set in your UNIX environment.
+
+  if {[info exists env(DISPLAY)]} {
+    gui_start
+
+    # Create a layout window
+    set MyLayout [gui_create_window -type LayoutWindow]
+
+    # Build congestion map in case report_congestion was not previously run
+    report_congestion -build_map
+
+    # Display congestion map in layout window
+    gui_show_map -map "Global Route Congestion" -show true
+
+    # Zoom full to display complete floorplan
+    gui_zoom -window [gui_get_current_window -view] -full
+
+    # Write the congestion map out to an image file
+    # You can specify the output image type with -format png | xpm | jpg | bmp
+
+    # The following saves only the congestion map without the legends
+    gui_write_window_image -format png -file ${REPORTS_DIR}/${DCRM_DCT_FINAL_CONGESTION_MAP_OUTPUT_FILE}
+
+    # The following saves the entire congestion map layout window with the legends
+    gui_write_window_image -window ${MyLayout} -format png -file ${REPORTS_DIR}/${DCRM_DCT_FINAL_CONGESTION_MAP_WINDOW_OUTPUT_FILE}
+
+    gui_stop
+  } else {
+    puts "Information: The DISPLAY environment variable is not set. Congestion map generation has been skipped."
+  }
+}
+# Use SAIF file for power analysis
+# read_saif -auto_map_names -input ${DESIGN_NAME}.saif -instance < DESIGN_INSTANCE > -verbose
+report_power -nosplit > ${REPORTS_DIR}/${DCRM_FINAL_POWER_REPORT}
+Error: could not open output redirect file "reports/montgomery_multiplier.mapped.power.rpt" (CMD-015)
+report_clock_gating -nosplit > ${REPORTS_DIR}/${DCRM_FINAL_CLOCK_GATING_REPORT}
+Error: could not open output redirect file "reports/montgomery_multiplier.mapped.clock_gating.rpt" (CMD-015)
+# Uncomment the next line if you include the -self_gating to the compile_ultra command
+# to report the XOR Self Gating information.
+# report_self_gating  -nosplit > ${REPORTS_DIR}/${DCRM_FINAL_SELF_GATING_REPORT}
+# Uncomment the next line to reports the number, area, and  percentage  of cells 
+# for each threshold voltage group in the design.
+# report_threshold_voltage_group -nosplit > ${REPORTS_DIR}/${DCRM_THRESHOLD_VOLTAGE_GROUP_REPORT}
+#################################################################################
+# Write out Milkyway Design for Top-Down Flow
+#
+# This should be the last step in the script
+#################################################################################
+if {[shell_is_in_topographical_mode]} {
+  # write_milkyway uses mw_design_library variable from dc_setup.tcl
+  write_milkyway -overwrite -output ${DCRM_FINAL_MW_CEL_NAME}
+}
+#exit
+dc_shell> echo dc_shell> echo[K[K[Kh[Kcho ${REUSLT[K[K[K[KSULTS_DIRT[K}
+results
+dc_shell> echo ${RESULTS_DIR}[P_[P_[P_[P_[P_[1@P_[1@O_[1@R_[1@T_[1@S_
+reports
+dc_shell> set REPORTS)D[K[K_DUIR[K[K[KIR $SYN[K[K[K{D[KSYN_DIR}/reports
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/reports
+dc_shell> exit
+
+Memory usage for main task 169 Mbytes.
+Memory usage for this session 169 Mbytes.
+CPU usage for this session 98 seconds ( 0.03 hours ).
+
+Thank you...

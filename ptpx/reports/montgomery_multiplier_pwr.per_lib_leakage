@@ -1,0 +1,41 @@
+****************************************
+Report : Threshold Voltage Group based leakage power
+	-threshold_voltage_group
+Design : montgomery_multiplier
+Version: M-2017.06-SP2
+Date   : Thu Jan 13 13:14:25 2022
+****************************************
+
+--------------------------------------------------------------------------------
+Other Vth:     Cells with a threshold_voltage_group attribute value other than 
+               what has been defined as Low Vth with the -lvth option.
+Undefined Vth: Cells which do not have the threshold_voltage_group attribute.
+--------------------------------------------------------------------------------
+Attributes :
+------------
+	 u -> user defined power group
+
+Power Group            NangateOpenCellLibrary
+                                           Total
+Name                   leakage (%)         leakage (%)         Attrs
+--------------------------------------------------------------------------------
+memory                0.0000 (  0.00%)    0.0000 (  0.00%)      
+io_pad                0.0000 (  0.00%)    0.0000 (  0.00%)      
+clock_network      1.776e-07 (100.00%) 1.776e-07 (100.00%)      
+black_box             0.0000 (  0.00%)    0.0000 (  0.00%)      
+combinational      1.111e-06 (100.00%) 1.111e-06 (100.00%)      
+register           2.621e-06 (100.00%) 2.621e-06 (100.00%)      
+sequential            0.0000 (  0.00%)    0.0000 (  0.00%)      
+--------------------------------------------------------------------------------
+Total              3.910e-06 (100.00%) 3.910e-06 (100.00%)
+--------------------------------------------------------------------------------
+SUMMARY : 
+
+	Other Vth leakage (%)     = 3.910e-06 (100.00%)
+	Undefined Vth leakage (%) =    0.0000 (  0.00%)
+	----------------------------------------------
+	Total leakage (%)         = 3.910e-06 (100.00%)
+
+--------------------------------------------------------------------------------
+
+1

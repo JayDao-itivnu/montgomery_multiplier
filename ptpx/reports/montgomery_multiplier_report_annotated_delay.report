@@ -1,0 +1,20 @@
+****************************************
+Report : annotated_delay
+Design : montgomery_multiplier
+Version: M-2017.06-SP2
+Date   : Thu Jan 13 13:14:25 2022
+****************************************
+
+                             |           |           |    NOT    |
+    Delay type               |    Total  | Annotated | Annotated |
+-----------------------------+-----------+-----------+-----------+
+cell arcs                    |      371  |      371  |        0  |
+cell arcs (unconnected)      |      125  |      125  |        0  |
+internal net arcs            |      170  |      170  |        0  |
+net arcs from primary inputs |       33  |       33  |        0  |
+net arcs to primary outputs  |        9  |        0  |        9  |
+-----------------------------+-----------+-----------+-----------+
+                             |      708  |      699  |        9  |
+
+
+1

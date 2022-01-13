@@ -56,8 +56,8 @@ set RTL_SOURCE_FILES  ""      ;# Enter the list of source RTL files if reading f
 # The following variables are used by scripts in the rm_dc_scripts folder to direct 
 # the location of the output files.
 
-set REPORTS_DIR "reports"
-set RESULTS_DIR "results"
+set REPORTS_DIR ${SYN_DIR}/reports
+set RESULTS_DIR ${SYN_DIR}/results
 
 file mkdir ${REPORTS_DIR}
 file mkdir ${RESULTS_DIR}

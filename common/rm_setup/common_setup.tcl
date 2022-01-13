@@ -7,11 +7,11 @@ puts "RM-Info: Running script [info script]\n"
 # Copyright (C) 2007-2015 Synopsys, Inc. All rights reserved.
 ##########################################################################################
 
-set DESIGN_NAME                   $env(DESIGN_NAME)  ;#  The name of the top-level design
-#set PROJECT_DIR                   $env(PROJECT_DIR)  ;# root path of the project
+set DESIGN_NAME                     $env(DESIGN_NAME)  ;#  The name of the top-level design
+#set PROJECT_DIR                    $env(PROJECT_DIR)  ;# root path of the project
                                                       # all the synthesis scripts are in ${PROJECT_DIR)/syn
-set DESIGN_KIT_PATH               $env(DESIGN_KIT_PATH)
-
+set DESIGN_KIT_PATH                 $env(DESIGN_KIT_PATH)
+set SYN_DIR                         $env(SYN_DIR)
 set DESIGN_REF_DATA_PATH          ""  ;#  Absolute path prefix variable for library/design data.
                                        #  Use this variable to prefix the common absolute path  
                                        #  to the common variables defined below.

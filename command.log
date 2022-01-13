@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running dc_shell Version K-2015.06 for linux64 -- May 28, 2015
-#@ # Date:   Wed Jan 12 16:47:36 2022
+#@ # Date:   Thu Jan 13 11:18:54 2022
 #@ # Run by: hiepdm@vnu-compute-3
 #@ 
 
@@ -3815,11 +3815,11 @@ source -echo -verbose /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplie
 #@ # Copyright (C) 2007-2015 Synopsys, Inc. All rights reserved.
 #@ ##########################################################################################
 #@ 
-#@ set DESIGN_NAME                   $env(DESIGN_NAME)  ;#  The name of the top-level design
-#@ #set PROJECT_DIR                   $env(PROJECT_DIR)  ;# root path of the project
+#@ set DESIGN_NAME                     $env(DESIGN_NAME)  ;#  The name of the top-level design
+#@ #set PROJECT_DIR                    $env(PROJECT_DIR)  ;# root path of the project
 #@ # all the synthesis scripts are in ${PROJECT_DIR)/syn
-#@ set DESIGN_KIT_PATH               $env(DESIGN_KIT_PATH)
-#@ 
+#@ set DESIGN_KIT_PATH                 $env(DESIGN_KIT_PATH)
+#@ set SYN_DIR                         $env(SYN_DIR)
 #@ set DESIGN_REF_DATA_PATH          ""  ;#  Absolute path prefix variable for library/design data.
 #@ #  Use this variable to prefix the common absolute path  
 #@ #  to the common variables defined below.
@@ -4098,8 +4098,8 @@ source -echo -verbose /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplie
 #@ # The following variables are used by scripts in the rm_dc_scripts folder to direct 
 #@ # the location of the output files.
 #@ 
-#@ set REPORTS_DIR "reports"
-#@ set RESULTS_DIR "results"
+#@ set REPORTS_DIR ${SYN_DIR}/reports
+#@ set RESULTS_DIR ${SYN_DIR}/results
 #@ 
 #@ file mkdir ${REPORTS_DIR}
 #@ file mkdir ${RESULTS_DIR}
@@ -4784,4 +4784,6 @@ source -echo -verbose /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplie
 #@ #exit
 #@ # -- End source /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/rm_dc_scripts/dc.tcl
 
+it
+it
 exit

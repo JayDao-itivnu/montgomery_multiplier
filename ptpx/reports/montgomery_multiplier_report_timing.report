@@ -1,0 +1,54 @@
+****************************************
+Report : timing
+	-path_type full
+	-delay_type min_max
+	-input_pins
+	-nets
+	-slack_lesser_than 0.000
+	-max_paths 1
+	-sort_by slack
+Design : montgomery_multiplier
+Version: M-2017.06-SP2
+Date   : Thu Jan 13 13:14:25 2022
+****************************************
+
+
+  Startpoint: current_state_reg_1_
+               (rising edge-triggered flip-flop clocked by clock)
+  Endpoint: cc_reg_0_ (removal check against rising-edge clock clock)
+  Path Group: **async_default**
+  Path Type: min
+
+  Point                                Fanout       Incr       Path
+  ------------------------------------------------------------------------
+  clock clock (rise edge)                          0.000      0.000
+  clock network delay (ideal)                      0.100      0.100
+  current_state_reg_1_/CK (DFFR_X1)                0.000      0.100 r
+  current_state_reg_1_/QN (DFFR_X1)                0.098 *    0.198 r
+  done (net)                              4 
+  U54/A2 (NOR2_X1)                                 0.017 *    0.215 r
+  U54/ZN (NOR2_X1)                                 0.038 *    0.253 f
+  inic (net)                             10 
+  U98/A1 (NOR2_X1)                                 0.018 *    0.271 f
+  U98/ZN (NOR2_X1)                                 0.114 *    0.385 r
+  n24 (net)                               8 
+  cc_reg_0_/RN (DFFR_X1)                           0.023 *    0.408 r
+  data arrival time                                           0.408
+
+  clock clock (rise edge)                          0.000      0.000
+  clock network delay (ideal)                      0.100      0.100
+  clock reconvergence pessimism                    0.000      0.100
+  clock uncertainty                                0.100      0.200
+  cc_reg_0_/CK (DFFR_X1)                                      0.200 r
+  library removal time                             0.310 *    0.510
+  data required time                                          0.510
+  ------------------------------------------------------------------------
+  data required time                                          0.510
+  data arrival time                                          -0.408
+  ------------------------------------------------------------------------
+  slack (VIOLATED)                                           -0.102
+
+
+No paths with slack less than 0.000.
+
+1

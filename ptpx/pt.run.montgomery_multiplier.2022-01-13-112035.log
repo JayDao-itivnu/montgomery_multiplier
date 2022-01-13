@@ -1,0 +1,520 @@
+
+                                 PrimeTime (R)
+
+               Version M-2017.06-SP2 for linux64 - Aug 25, 2017 
+
+                    Copyright (c) 1988 - 2017 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+
+#################################################################################
+# PrimeTime Reference Methodology Script
+# Script: pt.tcl
+# Version: K-2015.06 (July 13, 2015)
+# Copyright (C) 2008-2015 Synopsys All rights reserved.
+################################################################################
+# Please do not modify the sdir variable.
+# Doing so may cause script to fail.
+set PROJECT_DIR                   $env(PROJECT_DIR)  ;# root path of the project
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier
+# all the synthesis scripts are in ${PROJECT_DIR)/ptpx
+set sdir "${PROJECT_DIR}/ptpx"
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx
+##################################################################
+#    Source common and pt_setup.tcl File                         #
+##################################################################
+source ${sdir}/rm_setup/common_setup.tcl
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/rm_setup/common_setup.tcl
+
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/common/rm_setup/common_setup.tcl
+
+RM-Info: Completed script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/common/rm_setup/common_setup.tcl
+
+source ${sdir}/rm_setup/pt_setup.tcl
+RM-Info: Running script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/rm_setup/pt_setup.tcl
+
+RM-Info: Completed script /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/rm_setup/pt_setup.tcl
+
+set REPORTS_DIR ${sdir}/reports 
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/reports
+file mkdir ${REPORTS_DIR}
+set RESULTS_DIR ${sdir}/results
+/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/ptpx/results
+file mkdir ${RESULTS_DIR}
+##################################################################
+#    Search Path, Library and Operating Condition Section        #
+##################################################################
+# Under normal circumstances, when executing a script with source, Tcl
+# errors (syntax and semantic) cause the execution of the script to terminate.
+# Uncomment the following line to set sh_continue_on_error to true to allow 
+# processing to continue when errors occur.
+#set sh_continue_on_error true 
+set power_enable_analysis true 
+true
+set power_enable_multi_rail_analysis true 
+true
+set power_analysis_mode time_based 
+time_based
+set report_default_significant_digits 3 ;
+3
+set sh_source_uses_search_path true ;
+true
+set search_path ". $search_path" ;
+. . /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/input
+                                   /home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM 
+##################################################################
+#    Netlist Reading Section                                     #
+##################################################################
+set link_path "* $link_path"
+* * NangateOpenCellLibrary_typical.db 
+read_verilog ${DESIGN_NETLIST}
+1
+current_design $DESIGN_NAME 
+Information: current_design won't return any data before link (DES-071)
+link
+Loading verilog file '/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/results/montgomery_multiplier.mapped.v'
+Loading db file '/home/dkits/FreePDK45/NangateOpenCellLibrary_PDKv1_3_v2010_12/Front_End/db/NLDM/NangateOpenCellLibrary_typical.db'
+Linking design montgomery_multiplier...
+Information: Removing 3 unneeded designs..... (LNK-034)
+Information: 119 (88.81%) library cells are unused in library NangateOpenCellLibrary..... (LNK-045)
+Information: total 119 library cells are unused (LNK-046)
+Design 'montgomery_multiplier' was successfully linked.
+Information: There are 109 leaf cells, ports, hiers and 113 nets in the design (LNK-047)
+1
+##################################################################
+#    Back Annotation Section                                     #
+##################################################################
+if { [info exists SDF_PATHS] && [info exists SDF_FILES] } {
+foreach sdf_path $SDF_PATHS sdf_file $SDF_FILES {
+   if {[string compare $sdf_path $DESIGN_NAME] == 0} {
+      read_sdf -analysis_type on_chip_variation $sdf_file
+   } else {
+      read_sdf -path $sdf_path -analysis_type on_chip_variation $sdf_file
+   }
+}
+report_annotated_delay > $REPORTS_DIR/${DESIGN_NAME}_report_annotated_delay.report
+}
+
+****************************************
+Report : read_sdf /home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/syn/results/montgomery_multiplier.mapped.sdf
+	-load_delay cell
+	-analysis_type on_chip_variation
+	-min_type sdf_min
+	-max_type sdf_max
+Design : montgomery_multiplier
+Version: M-2017.06-SP2
+Date   : Thu Jan 13 11:20:37 2022
+****************************************
+
+        0 error(s)
+        Number of annotated cell delay arcs :       496
+        Number of annotated net delay arcs  :       203
+        Number of annotated timing checks   :       192
+        TEMPERATURE: 25.00 (min)  25.00 (max)
+        VOLTAGE    : 1.10 (min)  1.10 (max)
+        PROCESS    : typical (min)  typical (max)
+##################################################################
+#    Reading Constraints Section                                 #
+##################################################################
+if  {[info exists CONSTRAINT_FILES]} {
+        foreach constraint_file $CONSTRAINT_FILES {
+                if {[file extension $constraint_file] eq ".sdc"} {
+                        read_sdc -echo $constraint_file
+                } else {
+                        source -echo $constraint_file
+                }
+        }
+}
+
+Reading SDC version 2.0...
+###################################################################
+# Created by write_sdc on Thu Jan 13 11:19:06 2022
+###################################################################
+set_load -pin_load 0.1 [get_ports {z[7]}]
+set_load -pin_load 0.1 [get_ports {z[6]}]
+set_load -pin_load 0.1 [get_ports {z[5]}]
+set_load -pin_load 0.1 [get_ports {z[4]}]
+set_load -pin_load 0.1 [get_ports {z[3]}]
+set_load -pin_load 0.1 [get_ports {z[2]}]
+set_load -pin_load 0.1 [get_ports {z[1]}]
+set_load -pin_load 0.1 [get_ports {z[0]}]
+set_load -pin_load 0.1 [get_ports done]
+set_max_capacitance 1.5 [get_ports {z[7]}]
+set_max_capacitance 1.5 [get_ports {z[6]}]
+set_max_capacitance 1.5 [get_ports {z[5]}]
+set_max_capacitance 1.5 [get_ports {z[4]}]
+set_max_capacitance 1.5 [get_ports {z[3]}]
+set_max_capacitance 1.5 [get_ports {z[2]}]
+set_max_capacitance 1.5 [get_ports {z[1]}]
+set_max_capacitance 1.5 [get_ports {z[0]}]
+set_max_capacitance 1.5 [get_ports done]
+set_max_transition 1.5 [get_ports {a[7]}]
+set_max_transition 1.5 [get_ports {a[6]}]
+set_max_transition 1.5 [get_ports {a[5]}]
+set_max_transition 1.5 [get_ports {a[4]}]
+set_max_transition 1.5 [get_ports {a[3]}]
+set_max_transition 1.5 [get_ports {a[2]}]
+set_max_transition 1.5 [get_ports {a[1]}]
+set_max_transition 1.5 [get_ports {a[0]}]
+set_max_transition 1.5 [get_ports {b[7]}]
+set_max_transition 1.5 [get_ports {b[6]}]
+set_max_transition 1.5 [get_ports {b[5]}]
+set_max_transition 1.5 [get_ports {b[4]}]
+set_max_transition 1.5 [get_ports {b[3]}]
+set_max_transition 1.5 [get_ports {b[2]}]
+set_max_transition 1.5 [get_ports {b[1]}]
+set_max_transition 1.5 [get_ports {b[0]}]
+set_max_transition 1.5 [get_ports clock]
+set_max_transition 1.5 [get_ports reset]
+set_max_transition 1.5 [get_ports start]
+create_clock [get_ports clock]  -period 100  -waveform {0 50}
+set_clock_latency 0.1  [get_clocks clock]
+set_clock_uncertainty 0.1  [get_clocks clock]
+set_clock_transition -max -rise 0.1 [get_clocks clock]
+set_clock_transition -max -fall 0.1 [get_clocks clock]
+set_clock_transition -min -rise 0.1 [get_clocks clock]
+set_clock_transition -min -fall 0.1 [get_clocks clock]
+group_path -name FEEDTHROUGH  -from [list [get_ports {a[7]}] [get_ports {a[6]}] [get_ports {a[5]}] [get_ports {a[4]}] [get_ports {a[3]}] [get_ports {a[2]}] [get_ports {a[1]}] [get_ports {a[0]}] [get_ports {b[7]}] [get_ports {b[6]}] [get_ports {b[5]}] [get_ports {b[4]}] [get_ports {b[3]}] [get_ports {b[2]}] [get_ports {b[1]}] [get_ports {b[0]}] [get_ports reset] [get_ports start]]  -to [list [get_ports {z[7]}] [get_ports {z[6]}] [get_ports {z[5]}] [get_ports {z[4]}] [get_ports {z[3]}] [get_ports {z[2]}] [get_ports {z[1]}] [get_ports {z[0]}] [get_ports done]]
+group_path -name REGIN  -from [list [get_ports {a[7]}] [get_ports {a[6]}] [get_ports {a[5]}] [get_ports {a[4]}] [get_ports {a[3]}] [get_ports {a[2]}] [get_ports {a[1]}] [get_ports {a[0]}] [get_ports {b[7]}] [get_ports {b[6]}] [get_ports {b[5]}] [get_ports {b[4]}] [get_ports {b[3]}] [get_ports {b[2]}] [get_ports {b[1]}] [get_ports {b[0]}] [get_ports reset] [get_ports start]]
+group_path -name REGOUT  -to [list [get_ports {z[7]}] [get_ports {z[6]}] [get_ports {z[5]}] [get_ports {z[4]}] [get_ports {z[3]}] [get_ports {z[2]}] [get_ports {z[1]}] [get_ports {z[0]}] [get_ports done]]
+set_input_delay -clock clock  1.2  [get_ports clock]
+Warning: Setting input delay on clock port (clock) relative to a clock (clock) defined at the same port. Command is ignored. (UITE-489)
+set_input_delay -clock clock  1.2  [get_ports {a[7]}]
+set_input_delay -clock clock  1.2  [get_ports {a[6]}]
+set_input_delay -clock clock  1.2  [get_ports {a[5]}]
+set_input_delay -clock clock  1.2  [get_ports {a[4]}]
+set_input_delay -clock clock  1.2  [get_ports {a[3]}]
+set_input_delay -clock clock  1.2  [get_ports {a[2]}]
+set_input_delay -clock clock  1.2  [get_ports {a[1]}]
+set_input_delay -clock clock  1.2  [get_ports {a[0]}]
+set_input_delay -clock clock  1.2  [get_ports {b[7]}]
+set_input_delay -clock clock  1.2  [get_ports {b[6]}]
+set_input_delay -clock clock  1.2  [get_ports {b[5]}]
+set_input_delay -clock clock  1.2  [get_ports {b[4]}]
+set_input_delay -clock clock  1.2  [get_ports {b[3]}]
+set_input_delay -clock clock  1.2  [get_ports {b[2]}]
+set_input_delay -clock clock  1.2  [get_ports {b[1]}]
+set_input_delay -clock clock  1.2  [get_ports {b[0]}]
+set_input_delay -clock clock  1.2  [get_ports reset]
+set_input_delay -clock clock  1.2  [get_ports start]
+set_output_delay -clock clock  1.2  [get_ports {z[7]}]
+set_output_delay -clock clock  1.2  [get_ports {z[6]}]
+set_output_delay -clock clock  1.2  [get_ports {z[5]}]
+set_output_delay -clock clock  1.2  [get_ports {z[4]}]
+set_output_delay -clock clock  1.2  [get_ports {z[3]}]
+set_output_delay -clock clock  1.2  [get_ports {z[2]}]
+set_output_delay -clock clock  1.2  [get_ports {z[1]}]
+set_output_delay -clock clock  1.2  [get_ports {z[0]}]
+set_output_delay -clock clock  1.2  [get_ports done]
+1
+##################################################################
+#    Update_timing and check_timing Section                      #
+##################################################################
+update_timing -full
+Warning: Zero transition time will be used at to pins of annotated arcs. Delays on not annotated delay arcs will be estimated using best available slew.  (PTE-066)
+Warning: Some timing arcs have been disabled for breaking timing loops or because of constant propagation. Use the 'report_disable_timing' command to get the list of these disabled timing arcs. (PTE-003)
+Information: Zero transition time used at to pin of annotated arcs. Delays on not annotated delay arcs will be estimated using best available slew.  (PTE-054)
+Information: Zero transition time used at to pin of annotated arcs. Delays on not annotated delay arcs will be estimated using best available slew.  (PTE-054)
+1
+check_timing -verbose > $REPORTS_DIR/${DESIGN_NAME}_check_timing.report
+##################################################################
+#    Report_timing Section                                       #
+##################################################################
+report_global_timing > $REPORTS_DIR/${DESIGN_NAME}_report_global_timing.report
+report_clock -skew -attribute > $REPORTS_DIR/${DESIGN_NAME}_report_clock.report 
+report_analysis_coverage > $REPORTS_DIR/${DESIGN_NAME}_report_analysis_coverage.report
+report_timing -slack_lesser_than 0.0 -delay min_max -nosplit -input -net  > $REPORTS_DIR/${DESIGN_NAME}_report_timing.report
+##################################################################  
+#    Power Switching Activity Annotation Section                 #  
+##################################################################  
+read_vcd $ACTIVITY_FILE -strip_path $STRIP_PATH         
+Information: Checked out license 'PrimeTime-PX' (PT-019)
+
+======================================================================
+Summary:
+Total number of nets = 104
+Number of annotated nets = 0 (0.00%)
+Total number of leaf cells = 77
+Number of fully annotated leaf cells = 0 (0.00%)
+======================================================================
+
+Warning: VCD coverage on the design is too small. Power may be underestimated. (PWR-007)
+1
+report_switching_activity -list_not_annotated           
+****************************************
+Report : Switching Activity
+	-list_not_annotated
+Design : montgomery_multiplier
+Version: M-2017.06-SP2
+Date   : Thu Jan 13 11:20:37 2022
+****************************************
+
+ Switching Activity Overview Statistics for "montgomery_multiplier"
+----------------------------------------------------------------------------------------------------------------------------------------------------
+                  From Activity     From         From         From                                                         Not
+Object Type       File (%)          SSA (%)      SCA (%)      Clock (%)    Default (%)     Propagated(%)   Implied(%)      Annotated(%)    Total
+----------------------------------------------------------------------------------------------------------------------------------------------------
+ Nets             0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     3(2.88%)        0(0.00%)        0(0.00%)        101(97.12%)     104
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Nets Driven by
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Primary Input     0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     0(0.00%)        0(0.00%)        0(0.00%)        19(100.00%)     19
+Tri-State         0(0%)             0(0%)        0(0%)        0(0%)        0(0%)           0(0%)           0(0%)           0(0%)           0
+Black Box         0(0%)             0(0%)        0(0%)        0(0%)        0(0%)           0(0%)           0(0%)           0(0%)           0
+Sequential        0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     0(0.00%)        0(0.00%)        0(0.00%)        35(100.00%)     35
+Combinational     0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     3(6.38%)        0(0.00%)        0(0.00%)        44(93.62%)      47
+Memory            0(0%)             0(0%)        0(0%)        0(0%)        0(0%)           0(0%)           0(0%)           0(0%)           0
+Clock Gate        0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     0(0.00%)        0(0.00%)        0(0.00%)        3(100.00%)      3
+----------------------------------------------------------------------------------------------------------------------------------------------------
+ Static Probability Overview Statistics for "montgomery_multiplier"
+----------------------------------------------------------------------------------------------------------------------------------------------------
+                  From Activity     From         From         From                                                         Not
+Object Type       File (%)          SSA (%)      SCA (%)      Clock (%)    Default (%)     Propagated(%)   Implied(%)      Annotated(%)    Total
+----------------------------------------------------------------------------------------------------------------------------------------------------
+ Nets             0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     3(2.88%)        0(0.00%)        0(0.00%)        101(97.12%)     104
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Nets Driven by
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Primary Input     0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     0(0.00%)        0(0.00%)        0(0.00%)        19(100.00%)     19
+Tri-State         0(0%)             0(0%)        0(0%)        0(0%)        0(0%)           0(0%)           0(0%)           0(0%)           0
+Black Box         0(0%)             0(0%)        0(0%)        0(0%)        0(0%)           0(0%)           0(0%)           0(0%)           0
+Sequential        0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     0(0.00%)        0(0.00%)        0(0.00%)        35(100.00%)     35
+Combinational     0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     3(6.38%)        0(0.00%)        0(0.00%)        44(93.62%)      47
+Memory            0(0%)             0(0%)        0(0%)        0(0%)        0(0%)           0(0%)           0(0%)           0(0%)           0
+Clock Gate        0(0.00%)          0(0.00%)     0(0.00%)     0(0.00%)     0(0.00%)        0(0.00%)        0(0.00%)        3(100.00%)      3
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+List of nonannotated nets :
+	aa[7]
+	start
+	new_c[6]
+	n70
+	aa[6]
+	new_c[5]
+	z[7]
+	n72
+	aa[5]
+	z[6]
+	new_c[4]
+	n74
+	aa[4]
+	new_c[0]
+	z[5]
+	n75
+	aa[3]
+	z[4]
+	n69
+	n84
+	aa[2]
+	z[3]
+	n71
+	clk_gate_cc_reg/TE
+	aa[1]
+	z[2]
+	n73
+	clk_gate_count_reg/TE
+	clk_gate_cc_reg/ENCLK
+	aa[0]
+	z[1]
+	n81
+	clk_gate_bb_reg/TE
+	clk_gate_count_reg/ENCLK
+	current_state[1]
+	n82
+	z[0]
+	a[7]
+	current_state[0]
+	done
+	n83
+	clk_gate_bb_reg/ENCLK
+	a[6]
+	new_c[3]
+	count_3_
+	a[5]
+	N22
+	count_2_
+	new_c[2]
+	a[4]
+	N23
+	count_1_
+	new_c[1]
+	a[3]
+	N24
+	count_0_
+	a[2]
+	N25
+	inic
+	n76
+	a[1]
+	N26
+	ce_c
+	n78
+	a[0]
+	N27
+	n79
+	b[7]
+	N28
+	n80
+	b[6]
+	N29
+	bb[7]
+	b[5]
+	n24
+	n32
+	bb[6]
+	n53
+	b[4]
+	n61
+	bb[5]
+	n55
+	b[3]
+	n63
+	bb[4]
+	n56
+	b[2]
+	n64
+	bb[3]
+	b[1]
+	n59
+	n65
+	bb[2]
+	b[0]
+	n60
+	n66
+	bb[1]
+	n62
+	clock
+	n67
+	bb[0]
+	n85
+	reset
+	n68
+
+104 nets with no annotation
+1
+##################################################################
+#    Power Analysis Section                                      #
+##################################################################
+## set power analysis options                                   
+set_power_analysis_options -waveform_format fsdb -waveform_output $REPORTS_DIR/${DESIGN_NAME}
+## run power analysis
+check_power   > $REPORTS_DIR/${DESIGN_NAME}_check_power.report
+update_power  
+Information: Running time_based power analysis... (PWR-601)
+Error: Can not find any event in the event file.  (PWR-248)
+1
+## report_power
+report_power > $REPORTS_DIR/${DESIGN_NAME}_report_power.report
+# Clock Gating & Vth Group Reporting Section
+report_clock_gate_savings  
+Warning: For clock clock, the toggle rate is either zero or is uninitialized. Clock gate savings with respect to this clock cannot be computed. (PWR-954)
+****************************************
+Report : Clock Gate Savings
+	power_mode: Time_based
+Design : montgomery_multiplier
+Version: M-2017.06-SP2
+Date   : Thu Jan 13 11:20:38 2022
+****************************************
+
+------------------------------------------------------------------------------------
+Clock: clock
+  + Clock Toggle Rate: NA
+  + Number of Registers: 29
+      + Number of Un-gated Registers: 9 (31.0 %)
+      + Number of Gated Registers: 20 (69.0 %)
+  + Number of Clock Gates: 3
+  + Max Number of Clock Gate Stage: 1
+  + Average Clock Toggle Rate at Registers: NA
+  + Average Register Gating Efficiency (savings with respect to root clock): 0.0%
+------------------------------------------------------------------------------------
+Toggle Savings                       Number of       % of
+Distribution                         Registers       Registers
+---------------------------------------------------------------------------
+100%                                 0               0.0%
+80% - 100%                           0               0.0%
+60% - 80%                            0               0.0%
+40% - 60%                            0               0.0%
+20% - 40%                            0               0.0%
+0% - 20%                             0               0.0%
+0%                                   29              100.0%
+------------------------------------------------------------------------------------
+1
+# Set Vth attribute for each library if not set already
+foreach_in_collection l [get_libs] {
+        if {[get_attribute [get_lib $l] default_threshold_voltage_group] == ""} {
+                set lname [get_object_name [get_lib $l]]
+                set_user_attribute [get_lib $l] default_threshold_voltage_group $lname -class lib
+        }
+}
+Warning: Attribute 'default_threshold_voltage_group' does not exist on lib 'NangateOpenCellLibrary' (ATTR-3)
+Set attribute 'default_threshold_voltage_group' on 'NangateOpenCellLibrary'
+report_power -threshold_voltage_group > $REPORTS_DIR/${DESIGN_NAME}_pwr.per_lib_leakage
+report_threshold_voltage_group > $REPORTS_DIR/${DESIGN_NAME}_pwr.per_volt_threshold_group
+#exit
+Information: Defining new variable 'DESIGN_SDF_FILE'. (CMD-041)
+Information: Defining new variable 'lname'. (CMD-041)
+Information: Defining new variable 'LIBRARY_DONT_USE_FILE'. (CMD-041)
+Information: Defining new variable 'ADDITIONAL_SEARCH_PATH'. (CMD-041)
+Information: Defining new variable 'l'. (CMD-041)
+Information: Defining new variable 'DESIGN_NETLIST'. (CMD-041)
+Information: Defining new variable 'MAP_FILE'. (CMD-041)
+Information: Defining new variable 'REPORTS_DIR'. (CMD-041)
+Information: Defining new variable 'TECH_FILE'. (CMD-041)
+Information: Defining new variable 'VA3_COORDINATES'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET1'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET2'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET3'. (CMD-041)
+Information: Defining new variable 'HIERARCHICAL_CELLS'. (CMD-041)
+Information: Defining new variable 'MW_POWER_NET4'. (CMD-041)
+Information: Defining new variable 'MIN_LIBRARY_FILES'. (CMD-041)
+Information: Defining new variable 'DESIGN_VCD_FILE'. (CMD-041)
+Information: Defining new variable 'DESIGN_CONSTRAINT_FILE'. (CMD-041)
+Information: Defining new variable 'VA4_COORDINATES'. (CMD-041)
+Information: Defining new variable 'MIN_ROUTING_LAYER'. (CMD-041)
+Information: Defining new variable 'sdf_path'. (CMD-041)
+Information: Defining new variable 'MW_REFERENCE_LIB_DIRS'. (CMD-041)
+Information: Defining new variable 'SYN_DIR'. (CMD-041)
+Information: Defining new variable 'ADDITIONAL_LINK_LIB_FILES'. (CMD-041)
+Information: Defining new variable 'TLUPLUS_MAX_FILE'. (CMD-041)
+Information: Defining new variable 'ACTIVITY_FILE'. (CMD-041)
+Information: Defining new variable 'TARGET_LIBRARY_FILES'. (CMD-041)
+Information: Defining new variable 'DESIGN_NAME'. (CMD-041)
+Information: Defining new variable 'PROJECT_DIR'. (CMD-041)
+Information: Defining new variable 'DESIGN_REF_DATA_PATH'. (CMD-041)
+Information: Defining new variable 'STD_LIBRARY_SUFFIX'. (CMD-041)
+Information: Defining new variable 'NETLIST_FILES'. (CMD-041)
+Information: Defining new variable 'VA1_COORDINATES'. (CMD-041)
+Information: Defining new variable 'DESIGN_INSTANCE_PATH'. (CMD-041)
+Information: Defining new variable 'TLUPLUS_MIN_FILE'. (CMD-041)
+Information: Defining new variable 'constraint_file'. (CMD-041)
+Information: Defining new variable 'sdir'. (CMD-041)
+Information: Defining new variable 'sdf_file'. (CMD-041)
+Information: Defining new variable 'DESIGN_KIT_PATH'. (CMD-041)
+Information: Defining new variable 'RESULTS_DIR'. (CMD-041)
+Information: Defining new variable 'SDF_FILES'. (CMD-041)
+Information: Defining new variable 'CONSTRAINT_FILES'. (CMD-041)
+Information: Defining new variable 'STRIP_PATH'. (CMD-041)
+Information: Defining new variable 'SDF_PATHS'. (CMD-041)
+Information: Defining new variable 'STD_LIBRARY_TYPE'. (CMD-041)
+Information: Defining new variable 'MAX_ROUTING_LAYER'. (CMD-041)
+Information: Defining new variable 'MW_REFERENCE_CONTROL_FILE'. (CMD-041)
+Information: Defining new variable 'HIERARCHICAL_DESIGNS'. (CMD-041)
+Information: Defining new variable 'VA2_COORDINATES'. (CMD-041)
+Information: Defining new variable 'NAME_MAP_FILE'. (CMD-041)
+Information: Defining new variable 'PD1'. (CMD-041)
+Information: Defining new variable 'PD2'. (CMD-041)
+Information: Defining new variable 'PD3'. (CMD-041)
+Information: Defining new variable 'PD4'. (CMD-041)
+pt_shell> exit
+
+Timing updates: 1 (0 implicit, 1 explicit) (0 incremental, 1 full, 0 logical)
+Noise updates: 0 (0 implicit, 0 explicit) (0 incremental, 0 full)
+Maximum memory usage for this session: 791.54 MB
+CPU usage for this session: 3 seconds 
+Elapsed time for this session: 6 seconds
+Diagnostics summary: 1 error, 6 warnings, 63 informationals
+
+Thank you for using pt_shell!

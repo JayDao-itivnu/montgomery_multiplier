@@ -1,0 +1,32 @@
+****************************************
+Report : Averaged Power
+Design : montgomery_multiplier
+Version: M-2017.06-SP2
+Date   : Thu Jan 13 13:14:25 2022
+****************************************
+
+
+
+  Attributes
+  ----------
+      i  -  Including register clock pin internal power
+      u  -  User defined power group
+
+                        Internal  Switching  Leakage    Total
+Power Group             Power     Power      Power      Power   (     %)  Attrs
+--------------------------------------------------------------------------------
+clock_network           1.250e-06 1.113e-07 1.776e-07 1.539e-06 (24.01%)  i
+register                5.263e-07 1.330e-07 2.621e-06 3.280e-06 (51.20%)  
+combinational           2.902e-07 1.867e-07 1.111e-06 1.588e-06 (24.78%)  
+sequential                 0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+memory                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+io_pad                     0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+black_box                  0.0000    0.0000    0.0000    0.0000 ( 0.00%)  
+
+  Net Switching Power  = 4.310e-07   ( 6.73%)
+  Cell Internal Power  = 2.066e-06   (32.25%)
+  Cell Leakage Power   = 3.910e-06   (61.02%)
+                         ---------
+Total Power            = 6.407e-06  (100.00%)
+
+1

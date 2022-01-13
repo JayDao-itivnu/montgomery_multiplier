@@ -16,13 +16,13 @@ ENTITY tb_montgomery_multiplier IS
 END tb_montgomery_multiplier;
  
 ARCHITECTURE behavior OF tb_montgomery_multiplier IS 
-  CONSTANT M : INTEGER := 8;
-  CONSTANT F : STD_LOGIC_VECTOR(7 DOWNTO 0) := "00011101";
+constant M: integer := 8;
+constant F: std_logic_vector(7 downto 0) := "00011101";
     -- Component Declaration for the Unit Under Test (UUT)
   COMPONENT montgomery_multiplier is
-    generic(
-      constant M: integer := 8;
-      constant F: std_logic_vector(7 downto 0) := "00011101" --for M=8 bits
+   -- generic(
+      --M: integer := 8
+     -- F: std_logic_vector(7 downto 0) := "00011101" --for M=8 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"001B"; --for M=16 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"0101001B"; --for M=32 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"010100000101001B"; --for M=64 bits
@@ -30,7 +30,7 @@ ARCHITECTURE behavior OF tb_montgomery_multiplier IS
       --constant F: std_logic_vector(M-1 downto 0):= "000"&x"00000000000000000000000000000000000000C9"; --for M=163
       --constant F: std_logic_vector(M-1 downto 0):= (0=> '1', 74 => '1', others => '0'); --for M=233
       --constant F: std_logic_vector(M-1 downto 0):= (others => '1'); --for M=233
-    );
+  --  );
     port (
     a, b: in std_logic_vector (M-1 downto 0);
     clock, reset, start: in std_logic; 
@@ -58,10 +58,10 @@ BEGIN
  
   -- Instantiate the Unit Under Test (UUT)
   uut: montgomery_multiplier
-  GENERIC MAP(
-    M => M,
-    F => F
-  )
+--  GENERIC MAP(
+ --   M => M
+  --  F => F
+--  )
   PORT MAP (
     clock => clock,
     reset => reset,
@@ -79,7 +79,7 @@ BEGIN
   
   -- Stimulus process
   stim_proc: process
-    file infile : text open read_mode is "MontMul.txt";
+    file infile : text open read_mode is "montgomery_multiplier.txt";
 
     VARIABLE inline : LINE;
     VARIABLE outline : LINE;
@@ -122,16 +122,21 @@ BEGIN
       read(inline, c_line);
       read(inline, c_str);
       WAIT UNTIL (clock'EVENT AND clock ='1');
+      wait for 4 ns;
       a <= to_StdLogicVector(From_HexString(a_str));
       b <= to_StdLogicVector(From_HexString(b_str));
       exp_c := to_StdLogicVector(From_HexString(c_str));
       WAIT UNTIL (clock'EVENT AND clock='1');
+      wait for 4 ns;
       reset <= '0';
       WAIT UNTIL (clock'EVENT AND clock='1');
+      wait for 4 ns;
       start <= '1';     
       WAIT UNTIL (clock'EVENT AND clock ='1');
+      wait for 4 ns;
       start <= '0';
       WAIT UNTIL done ='1';
+      wait for 4 ns;
       data_check <= z_out;
       WAIT FOR 2*clock_period;  -- 2* clock_period
       
