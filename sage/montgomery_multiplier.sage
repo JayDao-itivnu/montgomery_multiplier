@@ -4,8 +4,8 @@ import basic_operations
 sim_dir = os.getenv('SIM_DIR')
 test_file = os.getenv('DESIGN_NAME') + (".txt")
 filename = os.path.join(sim_dir, test_file)
-r = [1, 0, 0, 0 ,1, 1, 1, 0, 1]
-len_of_bit = 8
+r = basic_operations.bits1(int("0x800000000000000000000000000000000000000C9", 16));
+len_of_bit = 163
 no_of_test = 10000
  
 file = open(filename,"w")

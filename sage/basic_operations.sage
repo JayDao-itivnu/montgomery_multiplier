@@ -1,3 +1,10 @@
+def bits1(n):
+    b = []
+    while n:
+        b = [n & 1] + b
+        n >>= 1
+    return b or [0]
+    
 def binatodeci(binary):
     return sum(val*(2**idx) for idx, val in enumerate(reversed(binary)))
 
