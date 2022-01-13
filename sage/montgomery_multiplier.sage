@@ -1,11 +1,12 @@
 import os
 import basic_operations
 # Get environment variables
-tb_dir = os.getenv('TB_DIR')
-filename = os.path.join(tb_dir, 'MontMul.txt')
+sim_dir = os.getenv('SIM_DIR')
+test_file = os.getenv('DESIGN_NAME') + (".txt")
+filename = os.path.join(sim_dir, test_file)
 r = [1, 0, 0, 0 ,1, 1, 1, 0, 1]
 len_of_bit = 8
-no_of_test = 100
+no_of_test = 10000
  
 file = open(filename,"w")
 for i in range(no_of_test) :
