@@ -9,192 +9,191 @@ z2
 cModel Technology
 Z0 d/home/userdata/ncs/hiepdm/00-projects/montgomery_multiplier/sim
 T_opt
-Z1 !s110 1642081974
-VWTm;NhnNbTakhj@I[YnXG1
+!s110 1642141732
+VD_Uz[R>30YnLINAM6jTAN2
 04 24 8 work tb_montgomery_multiplier behavior 1
-=1-ac1f6b18435d-61e02eb6-2c14c-16a7
+=1-ac1f6b18435d-61e11823-e0927-57f2
 o-quiet -auto_acc_if_foreign -work work
 tCvgOpt 0
 n@_opt
 OL;O;10.7c;67
 R0
 Emontg_cell
-Z2 w1642065117
-Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
-Z4 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z6 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+Z1 w1642141358
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z3 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
 R0
-Z7 8../src/montgomery_multiplier.vhd
-Z8 F../src/montgomery_multiplier.vhd
+Z6 8../src/montg_cell.vhd
+Z7 F../src/montg_cell.vhd
 l0
-L20
-VfDi1_;4W0=cfj69BE7]al1
-!s100 T?ML]I^1bcBCf1>cTIR`E2
-Z9 OL;C;10.7c;67
+L6
+Vf_c8PP;EMeW7EHLC<N27J0
+!s100 n:A;0z?9@jkg4WZ@Q:@Ab3
+Z8 OL;C;10.7c;67
 33
-Z10 !s110 1642092152
+Z9 !s110 1642141783
 !i10b 1
-Z11 !s108 1642092152.000000
-Z12 !s90 -2008|-work|work|../src/montgomery_multiplier.vhd|
-Z13 !s107 ../src/montgomery_multiplier.vhd|
+Z10 !s108 1642141783.000000
+Z11 !s90 -2008|-work|work|../src/montg_cell.vhd|../src/montgomery_multiplier.vhd|
+Z12 !s107 ../src/montgomery_multiplier.vhd|../src/montg_cell.vhd|
 !i113 0
-Z14 o-2008 -work work
-Z15 tExplicit 1 CvgOpt 0
+Z13 o-2008 -work work
+Z14 tExplicit 1 CvgOpt 0
 Artl
-R3
-R4
-R5
-R6
-DEx4 work 10 montg_cell 0 22 fDi1_;4W0=cfj69BE7]al1
-l42
-L40
-V@0La^V]b>h?CZ<=izo`cB1
-!s100 DCBbWXKQ2TC<bbSB=doA`3
-R9
-33
-R10
-!i10b 1
-R11
-R12
-R13
-!i113 0
-R14
-R15
-Emontgomery_multiplier
 R2
 R3
 R4
 R5
-R6
-R0
-R7
+DEx4 work 10 montg_cell 0 22 f_c8PP;EMeW7EHLC<N27J0
+l28
+L26
+VSbbM8b>LKm[>nNQoOX;6e0
+!s100 7RP1V6i26KKVY[jI?QBm53
 R8
-l0
-L61
-Vz[_iLNQ;7I`7>oaT9D>LD0
-!s100 1WgVmWPEg>];>EARTJhk[3
-R9
 33
-R10
+R9
 !i10b 1
+R10
 R11
 R12
-R13
 !i113 0
+R13
 R14
-R15
-Artl
+Emontgomery_multiplier
+Z15 w1642141435
+R2
 R3
 R4
 R5
-R6
-DEx4 work 21 montgomery_multiplier 0 22 z[_iLNQ;7I`7>oaT9D>LD0
-l108
-L81
-Va5TI=I3fGAi7O=mDiWKc]2
-!s100 <UT[Q?K:NhOOiV1^lTIR`2
-R9
+R0
+Z16 8../src/montgomery_multiplier.vhd
+Z17 F../src/montgomery_multiplier.vhd
+l0
+L25
+VFL_l1WDR@[WD<ZHa8Y>2J1
+!s100 4G6FVkSP<bE1mF_g96eY:2
+R8
 33
-R10
+R9
 !i10b 1
+R10
 R11
 R12
-R13
 !i113 0
+R13
 R14
-R15
-Etb_montgomery_multiplier
-w1642092117
-Z16 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
-Z17 DPx17 std_developerskit 9 std_iopak 0 22 TIEH2DXm]ZmCF5gcNZM2b2
-Z18 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
-Z19 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
+Artl
+R2
+R3
 R4
 R5
-R6
+DEx4 work 21 montgomery_multiplier 0 22 FL_l1WDR@[WD<ZHa8Y>2J1
+l72
+L45
+VWUiKRzY4g0Z3ggkfAAiGc2
+!s100 Ho;2z3d18aP5N<eb2G<C@3
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 0
+R13
+R14
+Etb_montgomery_multiplier
+Z18 w1642141719
+Z19 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
+Z20 DPx17 std_developerskit 9 std_iopak 0 22 TIEH2DXm]ZmCF5gcNZM2b2
+Z21 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+Z22 DPx4 ieee 9 math_real 0 22 gNk<PdFJ<XNPcfef`f?Z81
+R3
+R4
+R5
 R0
-Z20 8../tb/tb_montgomery_multiplier.vhd
-Z21 F../tb/tb_montgomery_multiplier.vhd
+Z23 8../tb/tb_montgomery_multiplier.vhd
+Z24 F../tb/tb_montgomery_multiplier.vhd
 l0
 L15
 VVK83cPMKZLAa^n9KAg:M^2
 !s100 ?cA0hdz8WJbQK@cAVzWGJ3
-R9
+R8
 33
-R10
+R9
 !i10b 1
-R11
-Z22 !s90 -2008|-work|work|../tb/tb_montgomery_multiplier.vhd|../tb/tb_package.vhd|
-Z23 !s107 ../tb/tb_package.vhd|../tb/tb_montgomery_multiplier.vhd|
+R10
+Z25 !s90 -2008|-work|work|../tb/tb_montgomery_multiplier.vhd|../tb/tb_package.vhd|
+Z26 !s107 ../tb/tb_package.vhd|../tb/tb_montgomery_multiplier.vhd|
 !i113 0
+R13
 R14
-R15
 Abehavior
-R16
-R17
-R18
 R19
+R20
+R21
+R22
+R3
 R4
 R5
-R6
-DEx4 work 24 tb_montgomery_multiplier 0 22 VK83cPMKZLAa^n9KAg:M^2
+Z27 DEx4 work 24 tb_montgomery_multiplier 0 22 VK83cPMKZLAa^n9KAg:M^2
 l57
 L18
-V>do=JGXUi8]5YmH=8aekj0
-!s100 k`0hC63Mj1^RN3ObQQk;31
-R9
+Z28 VU<oF>MNG;0D5i5AGZY2@z2
+Z29 !s100 Te^c_2k9eIk^]=o>>jOm=0
+R8
 33
-R1
+R9
 !i10b 1
-Z24 !s108 1642081974.000000
-R22
-R23
+R10
+R25
+R26
 !i113 0
+R13
 R14
-R15
-w1642074340
 Ptb_package
-R4
 R3
+R2
+R4
 R5
-R6
-Z25 w1641975127
+Z30 w1641975127
 R0
-Z26 8../tb/tb_package.vhd
-Z27 F../tb/tb_package.vhd
+Z31 8../tb/tb_package.vhd
+Z32 F../tb/tb_package.vhd
 l0
 L53
 VHI@hBX4o=P2<hFbE8V3100
 !s100 _KlOaoF7cIDSl0?S7bn1K3
-R9
+R8
 33
 b1
-R1
+R9
 !i10b 1
-R24
-R22
-R23
+R10
+R25
+R26
 !i113 0
+R13
 R14
-R15
 Bbody
-DPx4 work 10 tb_package 0 22 HI@hBX4o=P2<hFbE8V3100
-R4
+Z33 DPx4 work 10 tb_package 0 22 HI@hBX4o=P2<hFbE8V3100
 R3
+R2
+R4
 R5
-R6
 l0
 L59
-VE^OUU5lfUOeVSD^`XbRcT1
-!s100 Ed4E4FVkQN?de095cF;<k1
-R9
+Z34 VE^OUU5lfUOeVSD^`XbRcT1
+Z35 !s100 Ed4E4FVkQN?de095cF;<k1
+R8
 33
-R1
+R9
 !i10b 1
-R24
-R22
-R23
+R10
+R25
+R26
 !i113 0
+R13
 R14
-R15

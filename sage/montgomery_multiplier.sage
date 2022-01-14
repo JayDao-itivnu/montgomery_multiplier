@@ -33,9 +33,11 @@ for i in range(no_of_test) :
         while (len_of_bit - len(b_ls) != 0): b_ls.insert(0,0)
     file.write("N="); file.write(str(i+1))
     file.write("\nA=")
+    a = a.zfill((len_of_bit+1)/4) 
     file.write("{0:0>2}".format(hex(a).upper()[2:]))
     
     file.write("\nB=")
+    b = b.zfill((len_of_bit+1)/4) 
     file.write("{0:0>2}".format(hex(b).upper()[2:]))
     print ("complete", i,"/",no_of_test);
     result_ls = basic_operations.mul_poly(a_ls,b_ls,r)

@@ -22,7 +22,6 @@ ARCHITECTURE behavior OF tb_montgomery_multiplier IS
   COMPONENT montgomery_multiplier is
     generic(
    	M: integer := 8
-     	F: std_logic_vector(7 downto 0) := "00011101" --for M=8 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"001B"; --for M=16 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"0101001B"; --for M=32 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"010100000101001B"; --for M=64 bits
@@ -30,9 +29,10 @@ ARCHITECTURE behavior OF tb_montgomery_multiplier IS
       --constant F: std_logic_vector(M-1 downto 0):= "000"&x"00000000000000000000000000000000000000C9"; --for M=163
       --constant F: std_logic_vector(M-1 downto 0):= (0=> '1', 74 => '1', others => '0'); --for M=233
       --constant F: std_logic_vector(M-1 downto 0):= (others => '1'); --for M=233
-  --  );
+    );
     port (
     a, b: in std_logic_vector (M-1 downto 0);
+    F: in std_logic_vector (M-1 downto 0);
     clock, reset, start: in std_logic; 
     z: out std_logic_vector (M-1 downto 0);
     done: out std_logic
@@ -59,14 +59,14 @@ BEGIN
   -- Instantiate the Unit Under Test (UUT)
   uut: montgomery_multiplier
   GENERIC MAP(
-     M => M,
-     F => F
+     M => M
   )
   PORT MAP (
     clock => clock,
     reset => reset,
     a => a,
     b => b,
+    F => F,
     z => z_out,
     start => start,
     done => done
@@ -89,9 +89,9 @@ BEGIN
     VARIABLE b_line : STRING(1 TO 2);       -- Line for b 'B ='
     VARIABLE c_line : STRING(1 to 2);
     VARIABLE iteration_num : INTEGER;       
-    VARIABLE a_str : STRING(1 TO 41);
-    VARIABLE b_str : STRING(1 TO 41);
-    VARIABLE c_str : STRING(1 TO 41);
+    VARIABLE a_str : STRING(1 TO 42);
+    VARIABLE b_str : STRING(1 TO 42);
+    VARIABLE c_str : STRING(1 TO 42);
     VARIABLE exp_c : STD_LOGIC_VECTOR(M-1 DOWNTO 0):= (OTHERS => '0');
 	
     VARIABLE number_of_test : integer := 0;
