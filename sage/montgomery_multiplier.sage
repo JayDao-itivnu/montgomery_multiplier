@@ -13,7 +13,7 @@ test_file = os.getenv('DESIGN_NAME') + (".txt")
 filename = os.path.join(sim_dir, test_file)
 r = bits1(int("0x800000000000000000000000000000000000000C9", 16));
 len_of_bit = 163
-no_of_test =  50000
+no_of_test =  10000
  
 file = open(filename,"w")
 for i in range(no_of_test) :
@@ -22,7 +22,7 @@ for i in range(no_of_test) :
         a_ls = [0]
     else:
         a_ls = Integer(a).digits(2)[::-1]
-    b = randint(0,2^len_of_bit - 1); 
+    b = randint(0,2^(len_of_bit) - 1); 
     if (b == 0):
         b_ls = [0]
     else:
@@ -33,14 +33,16 @@ for i in range(no_of_test) :
         while (len_of_bit - len(b_ls) != 0): b_ls.insert(0,0)
     file.write("N="); file.write(str(i+1))
     file.write("\nA=")
-    a = a.zfill((len_of_bit+1)/4) 
-    file.write("{0:0>2}".format(hex(a).upper()[2:]))
+    a = hex(a)[2:].zfill((len_of_bit+1)/4) 
+    file.write(a.upper())
     
     file.write("\nB=")
-    b = b.zfill((len_of_bit+1)/4) 
-    file.write("{0:0>2}".format(hex(b).upper()[2:]))
+    b = hex(b)[2:].zfill((len_of_bit+1)/4) 
+    file.write(b.upper())
+    
     print ("complete", i,"/",no_of_test);
     result_ls = basic_operations.mul_poly(a_ls,b_ls,r)
+    
     result = result_ls.zfill((len_of_bit+1)/4) 
     file.write("\nC=")
     file.write(result)
