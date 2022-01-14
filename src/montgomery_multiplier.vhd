@@ -19,8 +19,8 @@ use ieee.std_logic_unsigned.all;
 
 entity montg_cell is
     generic(
-        M: integer := 8;
-        F: std_logic_vector(7 downto 0) := "00011101" --for M=8 bits
+        M: integer := 163;
+        F: std_logic_vector(162 downto 0) := "000"&x"00000000000000000000000000000000000000C9" --for M=8 bits
         --constant F: std_logic_vector(M-1 downto 0):= x"001B"; --for M=16 bits
         --constant F: std_logic_vector(M-1 downto 0):= x"0101001B"; --for M=32 bits
         --constant F: std_logic_vector(M-1 downto 0):= x"010100000101001B"; --for M=64 bits
@@ -60,8 +60,8 @@ use IEEE.std_logic_unsigned.all;
 
 entity montgomery_multiplier is
     generic(
-        M: integer := 8;
-        F: std_logic_vector(7 downto 0) := "00011101" --for M=8 bits
+        M: integer := 163;
+        F: std_logic_vector(162 downto 0) := "000"&x"00000000000000000000000000000000000000C9" --for M=8 bits
         --constant F: std_logic_vector(M-1 downto 0):= x"001B"; --for M=16 bits
         --constant F: std_logic_vector(M-1 downto 0):= x"0101001B"; --for M=32 bits
         --constant F: std_logic_vector(M-1 downto 0):= x"010100000101001B"; --for M=64 bits
@@ -82,8 +82,8 @@ architecture rtl of montgomery_multiplier is
 
     component montg_cell is
         generic(
-            M: integer := 8;
-            F: std_logic_vector(7 downto 0) := "00011101" --for M=8 bits
+            M: integer := 163;
+            F: std_logic_vector(162 downto 0) := "000"&x"00000000000000000000000000000000000000C9" --for M=8 bits
             --constant F: std_logic_vector(M-1 downto 0):= x"001B"; --for M=16 bits
             --constant F: std_logic_vector(M-1 downto 0):= x"0101001B"; --for M=32 bits
             --constant F: std_logic_vector(M-1 downto 0):= x"010100000101001B"; --for M=64 bits

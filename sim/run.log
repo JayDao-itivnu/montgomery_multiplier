@@ -1,0 +1,43 @@
+# do behavioral_sim.do
+# ..
+# ../sim
+# ../src
+# ../tb
+# ** Warning: (vlib-34) Library already exists at "work".
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 23:42:32 on Jan 13,2022
+# vcom -2008 -work work ../src/montgomery_multiplier.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity montg_cell
+# -- Compiling architecture rtl of montg_cell
+# -- Compiling entity montgomery_multiplier
+# -- Compiling architecture rtl of montgomery_multiplier
+# End time: 23:42:32 on Jan 13,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 23:42:32 on Jan 13,2022
+# vcom -2008 -work work ../tb/tb_montgomery_multiplier.vhd ../tb/tb_package.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package MATH_REAL
+# -- Loading package std_logic_textio
+# -- Loading package std_iopak
+# -- Loading package ENV
+# -- Compiling entity tb_montgomery_multiplier
+# -- Compiling architecture behavior of tb_montgomery_multiplier
+# ** Error: ../tb/tb_montgomery_multiplier.vhd(25): Physical unit hidden by declaration of 'F' at line 20.
+# ** Error: ../tb/tb_montgomery_multiplier.vhd(25): near ":": (vcom-1576) expecting ';' or ')'.
+# ** Note: ../tb/tb_package.vhd(1): VHDL Compiler exiting
+# End time: 23:42:32 on Jan 13,2022, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+# ** Error: /home/tools/mentor/questasim/10.7c/questasim/linux_x86_64/vcom failed.
+# Error in macro ./behavioral_sim.do line 18
+# /home/tools/mentor/questasim/10.7c/questasim/linux_x86_64/vcom failed.
+#     while executing
+# "vcom -2008 -work work $tb_dir/*.vhd"

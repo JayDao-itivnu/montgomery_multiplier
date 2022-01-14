@@ -16,13 +16,13 @@ ENTITY tb_montgomery_multiplier IS
 END tb_montgomery_multiplier;
  
 ARCHITECTURE behavior OF tb_montgomery_multiplier IS 
-constant M: integer := 8;
-constant F: std_logic_vector(7 downto 0) := "00011101";
+  constant M: integer := 163;
+  constant F: std_logic_vector(162 downto 0) := "000"&x"00000000000000000000000000000000000000C9";
     -- Component Declaration for the Unit Under Test (UUT)
   COMPONENT montgomery_multiplier is
-   -- generic(
-      --M: integer := 8
-     -- F: std_logic_vector(7 downto 0) := "00011101" --for M=8 bits
+    generic(
+   	M: integer := 8
+     	F: std_logic_vector(7 downto 0) := "00011101" --for M=8 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"001B"; --for M=16 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"0101001B"; --for M=32 bits
       --constant F: std_logic_vector(M-1 downto 0):= x"010100000101001B"; --for M=64 bits
@@ -58,10 +58,10 @@ BEGIN
  
   -- Instantiate the Unit Under Test (UUT)
   uut: montgomery_multiplier
---  GENERIC MAP(
- --   M => M
-  --  F => F
---  )
+  GENERIC MAP(
+     M => M,
+     F => F
+  )
   PORT MAP (
     clock => clock,
     reset => reset,
@@ -80,6 +80,7 @@ BEGIN
   -- Stimulus process
   stim_proc: process
     file infile : text open read_mode is "montgomery_multiplier.txt";
+    file infile1: text open write_mode is "check.txt";
 
     VARIABLE inline : LINE;
     VARIABLE outline : LINE;
@@ -88,9 +89,9 @@ BEGIN
     VARIABLE b_line : STRING(1 TO 2);       -- Line for b 'B ='
     VARIABLE c_line : STRING(1 to 2);
     VARIABLE iteration_num : INTEGER;       
-    VARIABLE a_str : STRING(1 TO 2);
-    VARIABLE b_str : STRING(1 TO 2);
-    VARIABLE c_str : STRING(1 TO 2);
+    VARIABLE a_str : STRING(1 TO 41);
+    VARIABLE b_str : STRING(1 TO 41);
+    VARIABLE c_str : STRING(1 TO 41);
     VARIABLE exp_c : STD_LOGIC_VECTOR(M-1 DOWNTO 0):= (OTHERS => '0');
 	
     VARIABLE number_of_test : integer := 0;
@@ -123,9 +124,9 @@ BEGIN
       read(inline, c_str);
       WAIT UNTIL (clock'EVENT AND clock ='1');
       wait for 4 ns;
-      a <= to_StdLogicVector(From_HexString(a_str));
-      b <= to_StdLogicVector(From_HexString(b_str));
-      exp_c := to_StdLogicVector(From_HexString(c_str));
+      a <= to_StdLogicVector(From_HexString(a_str))(M downto 1);
+      b <= to_StdLogicVector(From_HexString(b_str))(M downto 1);
+      exp_c := to_StdLogicVector(From_HexString(c_str))(M downto 1);
       WAIT UNTIL (clock'EVENT AND clock='1');
       wait for 4 ns;
       reset <= '0';
@@ -153,6 +154,19 @@ BEGIN
       end if;
       writeline(output, outline);
       number_of_test := number_of_test + 1;	
+      
+      writeline(infile1, inline);
+      write(inline, itr_numline);
+      write(inline, iteration_num);
+      writeline(infile1, inline);
+      write(inline, a_line);
+      write(inline, a_str);
+      writeline(infile1, inline);
+      write(inline, b_line);
+      write(inline, b_str);
+      writeline(infile1, inline);
+      write(inline, c_line);
+      write(inline, exp_c);
    end loop;
 
     write(outline, string'("=============== Summary ==========================="));
@@ -168,6 +182,7 @@ BEGIN
     writeline(output, outline);
     write(outline, string'("==================================================="));
     writeline(output, outline);
+
     finish(2);
   end process;
 
